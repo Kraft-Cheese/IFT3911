@@ -92,7 +92,7 @@
 
     <h3>Modélisation du réseau de Pétri</h3>
     <p>
-        <img src="./diagrammes/PetriNetTunnel.png" alt="Réseau de Pétri" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        <img src="./Diagrammes/PetriNetTunnel.png" alt="Réseau de Pétri" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
     </p>
 
     <h3>Analyse du réseau de Pétri</h3>
@@ -211,7 +211,7 @@
     </p>
 
     <h4>Propriétés: </h4>
-    <p>Est-ce que le reseaux est borné? Oui, car seulement une voiture peut être dans le tunnel à la fois, et il y a toujours une voiture à chaque entrée. </p>
+    <p>Est-ce que le réseau est borné? Oui, car seulement une voiture peut être dans le tunnel à la fois, et il y a toujours une voiture à chaque entrée. </p>
     <p>Y-a-t-il une loi de conservation? Oui, les voitures ne peuvent pas se croiser et les voitures alternent entre les deux directions.</p>
     <p>Y-a-t-il une situation d'interblocage? Non, il y a un cycle qui accede à chaque transition, aucun neoud du graphe reste terminal.</p>
     <p>Y-a-t-il une situation de famine? Non, puisqu'il y a une alternance stricte entre les voitures entrant à Montreal et à Rive-Sud.</p>
@@ -226,14 +226,30 @@
     <h3>Modélisation du Statechart</h3>
 
     <p>
-        <!-- <b>Chemin vers le fichier .vpp = ./vpp_files/Domaine/Statechart/statechart.vpp</b> -->
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <!-- <image href="./diagrammes/statechart.svg" width="100%" height="100%"  /> -->
-        </svg>
-    </p>
-    <h3>Precisions</h3>
+        <b>Chemin vers le répertoire du State Chart = ./Microwave</b>
         <p>
-            Gemma x Helly R. (EXPLICIT, Hurt/Comfort, angst, grief, Major Character Death)
+            <img src="./Diagrammes/StateChart.png" alt="Réseau de Pétri" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+    </p>
+    <h3>Précisions</h3>
+        <p>
+            <ul>
+                <li>
+                    <i>La porte peut être ouverte ou fermée en tout temps. Pour des raisons de sécurité, la cuisson ne peut avoir lieu si la porte est ouverte. Durant la cuisson, l'ouverture de la porte interrompt la cuisson. Le message 'Waiting' est alors affiché. Lorsque la porte est refermée, l'afficheur affiche le texte précédent l'ouverture (message ou temps).</i>
+                    <br><br>
+                    Il y a ici une ambiguïté dans les instructions quant à si on doit afficher le 'Waiting' seulement quand on ouvre la porte pendant la cuisson, ou si on doit l'afficher n'importe quand qu'on l'ouvre. Après plusieurs interactions avec plusieurs micro-ondes différents, nous avons conclu qu'il est possible de faire d'autres inputs dans le clavier du micro-ondes pendant qu'il est ouvert, sauf pour partir la cuisson. Dans ce cas, il ne ferait pas de sens d'afficher 'Waiting', étant donné qu'on doit continuer à afficher le résultat des inputs. Nous avons décidé d'implémenter ce comportement. Donc, ce message est seulement affiché quand on ouvre la porte pendant la cuisson. Aucun input ne peut être entré pendant ce temps, on peut seulement fermer la porte, ou appuyer sur stop pour recommencer le processus.
+                </li>
+                <br>
+                <li>
+                    <i>Appuyer sur stop arrête tout le processus et met le système au repos.</i>
+                    <br><br>
+                    Nous avons interprété le fait de mettre le système au repos de le recommencer. Donc, quand on appuie sur stop à n'importe quel moment, que ce soit pendant la cuisson ou pendant de l'input dans le clavier, on interromp tout et on peut recommencer. 
+                </li>
+                <br>
+                <li>
+                    Pour une raison quelconque, les triggers 'always' et 'oncycle' ne marchaient pas tout à fait de la manière intendue. La documentation de Yakindu indique clairement que les transitions avec un de ces triggers se déclenchera immédiatement lorsque les fonctions entry/ et exit/ ont terminé dans l'état de départ. Toutefois, il fallait toujours peser sur n'importe quel bouton sur le clavier pour permettre la transition. C'est pourquoi il y a 2 transitions qui ont comme trigger <b>after 2ms</b>, c'était la meilleure façon de simuler des transitions immédiates (utiliser 0s générait d'autres bogues).
+                </li>
+            </ul>
         </p>
 
     <h2>Design logiciel</h2>
@@ -350,15 +366,10 @@
 
     <div>
         <p>
+            Nous avons vérifié toutes les contraintes OCL qui n'avaient pas d'erreur après la correction du devoir 1, et elles étaient toujours valides pour le nouveau diagramme de classes. Donc, ci-dessous, nous corrigeons uniquement celles qui étaient erronées.
+        </p>
+        <p>
             <ol>
-                <li>
-                    <i>Un aéroport est identifié par trois lettres uniques à chaque aéroport.</i>
-                    <br><br>
-                    context Aeroport <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.ID.size() = 3 <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.allInstances() &rarr; isUnique(ID)
-                </li>
-                <br>
                 <li>
                     <i>Un vol est identifié par un ID qui commence par deux lettres suivi d'une série de chiffres. La partie alphabétique de l'ID d'un vol est unique à chaque compagnie et la partie numérique est unique à chaque vol au sein de la même compagnie.</i>
                     <br><br>
@@ -369,47 +380,10 @@
                 </li>
                 <br>
                 <li>
-                    <i>L'aéroport de départ et d'arrivée d'un vol doit être différent.</i>
-                    <br><br>
-                    context Vol <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.Pt_depart.ID <> self.Pt_arrivee.ID <br>
-                </li>
-                <br>
-                <li>
-                    <i>Un port est identifié par trois lettres uniques à chaque port.</i>
-                    <br><br>
-                    context Port <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.ID.size() = 3 <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.allInstances() &rarr; isUnique(ID)
-                </li>
-                <br>
-                <li>
-                    <i>Un itinéraire ne peut pas durer plus de 21 jours.</i>
-                    <br><br>
-                    context Itineraire <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.duree <= 21 <br>
-                </li>
-                <br>
-                <li>
-                    <i>Le port de départ et d'arrivée doit être le même.</i>
-                    <br><br>
-                    context Itineraire <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.Pt_depart.ID = self.Pt_arrivee.ID <br>
-                </li>
-                <br>
-                <li>
                     <i>Un paquebot peut être assigné à plusieurs itinéraires tant qu'ils ne se chevauchent pas.</i>
                     <br><br>
                     context Paquebot <br>
                     &nbsp;&nbsp;&nbsp;&nbsp; inv : self.total_parcours &rarr; forAll(p1, p2 | p1 <> p2 implies p1 &rarr; intersection(p2) &rarr; isEmpty()) <br>
-                </li>
-                <br>
-                <li>
-                    <i>Une gare est identifiée par trois lettres uniques à chaque gare.</i>
-                    <br><br>
-                    context Gare <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.ID.size() = 3 <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; inv : self.allInstances() &rarr; isUnique(ID)
                 </li>
                 <br>
                 <li>
@@ -424,12 +398,6 @@
                     <br><br>
                     context Reservation::setValid() <br>
                     &nbsp;&nbsp;&nbsp;&nbsp; post : not self.place.DispoPlace <br>
-                </li>
-                <br>
-                <li>
-                    <i>Tous les sièges d'une même section ont le même prix. / Toutes les cabines d'une même section ont le même prix.</i>
-                    <br><br>
-                    Dans notre modélisation du logiciel, on a mis l'attribut "prix" directement dans la classe "Section", qui elle contient une liste de "Places" (i.e. des "Sièges" ou des "Cabines"). À chaque fois qu'on voudra accèder une place, on passera par la liste contenue dans la section, et donc on aura toujours le même prix. C'est pourquoi on n'a pas mis de contrainte OCL pour ces deux contraintes.
                 </li>
                 <br>
             </ol>
