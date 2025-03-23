@@ -23,7 +23,7 @@
 </head>
 <body>
     <h1 style="text-align: center;">
-        IFT 3911 - Devoir 1 - Mike</h1>
+        IFT 3911 - Devoir 2 - Mike</h1>
     <h2>
         Information générale</h2>
     <p>
@@ -75,13 +75,13 @@
         <tbody>
             <tr>
                 <td>
-                    Modèle du domaine, DSS + séquence (réservation billets), OCL, diagramme de classes
+                    Statechart, OCL, qualité du design, rapport
                 </td>
                 <td>
-                    Réseau de Pétri, diagramme paquets, diagramme de classes
+                    Réseau de Pétri, diagramme de paquets, diagramme de classes, qualité du design, rapport
                 </td>
                 <td>
-                    Modèle du domaine, DSS + séquence (recherche billets), diagramme de classes, rapport
+                    Diagramme de classes, diagrammes de séquence, OCL, qualité du design, rapport
                 </td>
             </tr>
 
@@ -252,118 +252,17 @@
             </ul>
         </p>
 
-    <h2>Design logiciel</h2>
+    <h2>Tâche 3 - Design logiciel</h2>
     <h3>Révision du diagramme de classe</h3>
-        <p></p>
+        <p>
+            <!--METTRE IMAGE ET FILE PATH-->
+
+        </p>
     <h3>Révision des diagrammes de séquence</h3>
         <p></p>
     <h3>Révision du diagramme de paquets</h3>
         <p></p>
     <h3>Révision des contraintes OCL</h3>
-        <p></p>
-    <h3>Identification des modules réutilisables</h3>
-        <p></p>
-
-    <h2>Qualité du design</h2>
-        <p></p>
-    <h3>Discussion du couplage et de la cohésion des modules</h3>
-        <p></p>
-    <h3>Discussion du fardeau des classes</h3>
-        <p></p>
-    <h3>Graphe IA et justification</h3>
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/IA_graph.png" width="100%" height="100%"  />
-        </svg>
-        <p></p>
-    <h3>Justification de l'application des principes de conception</h3>
-        <p></p>
-
-    <h3>Diagramme de classes</h3>
-    <p>
-        Notre diagramme de classes suit ce qu'on a décidé dans le modèle du domaine, mais avec plus de détails sur les méthodes et les
-        attributs. On garde le concept d'héritage pour les classes ModeTransport, Parcours et Hub, puisqu'elles ont beaucoup d'attributs en commun.
-        On a ensuite spécialisé cette classe en ajoutant des fonctions propres à chaque moyen de transport ou de trajet, telles que l'option de modifier
-        une liste de ports dans un itinéraire, qui lui aussi a une liste de ports. <br>
-        On a souvent utilisé la composition pour lier un mode de transport précis, un hub, et un parcours donné. En effet, on ne peut pas avoir de vol
-        sans des aéroports, si un aéorport change l'entité "Vol" qui le contient change également puis sans une compagnie aérienne, il n'y a pas de vols.
-        Cette logique est la même pour les autres moyens de transport. <br>
-        Par la suite, nous avons utilisé plusieurs Enum pour les attributs ayant un ensemble strict d'options (les types de sections,
-        les types de sièges, les types de cabines). À noter également que si on fait une réservation pour un Paquebot,
-        le système assignera par défaut la valeur "Aucune" à préférence, puisque ce sont des cabines et non des sièges.<br>
-        Enfin, nous avons ajouté une classe "Passager" qui n'est pas dans le modèle du domaine, mais qui est nécessaire pour qu'un usager
-        (et l'administrateur) garde une trace des réservations et des coordonnées.
-    </p>
-    <p>
-        <b>Chemin vers le fichier .vpp = ./vpp_files/Design/Classes/class_diag.vpp</b>
-        <svg width="1500px" height="600px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/Class_diag.png" width="100%" height="100%"  />
-        </svg>
-    </p>
-
-    <!-- <h3>Diagrammes de séquence</h3>
-
-    <h4>Vérifier les vols/lignes/itinéraires</h4>
-    <p>
-        Nous avons conservé la même logique que le DSS pour ce scénario, Nous avons simplement adapté les méthodes et les classes.
-        Le système regarde parmi tous les vols offerts dans la liste all_parcours et vérifie s'il reste des places avec check_available.
-        Ensuite, chaque résultat sera mis dans une liste qui sera retournée par resultats_serch via l'affichage de l'interface. <br>
-        Encore une fois, ce diagramme s'applique également aux autres modes de transport.
-    </p>
-    <p>
-        <b>Chemin vers le fichier .vpp = ./diagrammes/vpp_files/Design/Sequences/Scenario_1.vpp</b>
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/Sequence_research.png" width="100%" height="100%"  />
-        </svg>
-    </p>
-
-    <h4>Réserver un siège</h4>
-    <p>
-        On se trouve dans la même situation que dans le DSS, mais on a adapté les méthodes et les classes.
-        Lorsqu'il y a un succès, on instancie une Réservation avec le parcours choisi, la section et siège et le moyen de transport.
-        Les informations du client seront ajoutées au moment du paiment.
-    </p>
-    <p>
-        <b>Chemin vers le fichier .vpp = ./diagrammes/vpp_files/Design/Sequences/Scenario_2.vpp</b>
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/Sequence_ReserveASeat.png" width="100%" height="100%"  />
-        </svg>
-    </p>
-
-    <h4>Payer pour un siège</h4>
-    <p>
-        On a d'abord besoin de voir la validité de la réservation (si 24h sont passées). On a choisi de ne pas faire de verfication d'information personelle du client via une méthode, car
-        on suppose que le système de l'aéroport ou de la compagnie aérienne le fait déjà. C'est le système bancaire qui fera la vérification des informations de paiement, pas le système ou la classe
-        Paiement, car ce n'est pas notre responsabilité et nous n'avons pas les informations nécessaires pour le faire (comme les informations confidentielles du client).
-        Le client recevra des confirmations en guise de feedback.
-    </p>
-    <p>
-        <b>Chemin vers le fichier .vpp = ./diagrammes/vpp_files/Design/Sequences/Scenario_3.vpp</b>
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/SequenceDiag22.jpg" width="100%" height="100%"  />
-        </svg>
-    </p>
- -->
-
-    <h3>Diagramme de paquets</h3>
-    <p>
-        Nous avons choisi de suivre quelque chose similaire à la structure MVC. Ainsi, le premier paquet "Core" représente le controlleur, le paquet "Interface" représente
-        la vue et le paquet "Transport" représente le modèle. Dans "Interface", nous avons inclut la singulière classe "Interface" pour pouvoir éventuellement ajouter d'autres vues.
-        Dans "Transports", nous avons inclus les classes qui représentent les entités du domaine, soit les compagnies, les parcours, les moyens de transport et les places (sièges et cabines).
-        Notre logique pour inclure certaines classes dans certains paquets était selon leur degré de communication dans le diagramme de classes et notre conception de l'eventuel programme.
-        Dans "Core", nous avons inclus les classes qui représentent les actions que le système peut effectuer, soit les réservations et les paiements, ainsi qu'une communication avec
-        l'interface via la classe "System" et l'entité de "Passager", qui existe seulement dans le contexte d'une réservation.
-    </p>
-    <p>
-        <b>Chemin vers le fichier .vpp ./diagrammes/vpp_files/Design/Package/PackageDiagram3911.vpp</b>
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/Diag_Pack.jpg" width="100%" height="100%"  />
-        </svg>
-    </p>
-
-
-
-    <h2>Partie 3 - Contraintes OCL </h2>
-
     <div>
         <p>
             Nous avons vérifié toutes les contraintes OCL qui n'avaient pas d'erreur après la correction du devoir 1, et elles étaient toujours valides pour le nouveau diagramme de classes. Donc, ci-dessous, nous corrigeons uniquement celles qui étaient erronées.
@@ -403,6 +302,38 @@
             </ol>
         </p>
     </div>
+    <h3>Identification des modules réutilisables</h3>
+        <p></p>
+
+    <h2>Tâche 4 - Qualité du design</h2>
+        <p></p>
+    <h3>Discussion du couplage et de la cohésion des modules</h3>
+        <p></p>
+    <h3>Discussion du fardeau des classes</h3>
+        <p></p>
+    <h3>Graphe IA et justification</h3>
+        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+            <image href="./diagrammes/IA_graph.png" width="100%" height="100%"  />
+        </svg>
+        <p></p>
+    <h3>Justification de l'application des principes de conception</h3>
+        <p></p>
+
+    <!--<h3>Diagramme de paquets</h3>
+    <p>
+        Nous avons choisi de suivre quelque chose similaire à la structure MVC. Ainsi, le premier paquet "Core" représente le controlleur, le paquet "Interface" représente
+        la vue et le paquet "Transport" représente le modèle. Dans "Interface", nous avons inclut la singulière classe "Interface" pour pouvoir éventuellement ajouter d'autres vues.
+        Dans "Transports", nous avons inclus les classes qui représentent les entités du domaine, soit les compagnies, les parcours, les moyens de transport et les places (sièges et cabines).
+        Notre logique pour inclure certaines classes dans certains paquets était selon leur degré de communication dans le diagramme de classes et notre conception de l'eventuel programme.
+        Dans "Core", nous avons inclus les classes qui représentent les actions que le système peut effectuer, soit les réservations et les paiements, ainsi qu'une communication avec
+        l'interface via la classe "System" et l'entité de "Passager", qui existe seulement dans le contexte d'une réservation.
+    </p>
+    <p>
+        <b>Chemin vers le fichier .vpp ./diagrammes/vpp_files/Design/Package/PackageDiagram3911.vpp</b>
+        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+            <image href="./diagrammes/Diag_Pack.jpg" width="100%" height="100%"  />
+        </svg>
+    </p>-->
 
 </body>
 </html>
