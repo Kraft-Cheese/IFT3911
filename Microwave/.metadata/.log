@@ -1,0 +1,38 @@
+!SESSION 2025-03-20 18:18:20.476 -----------------------------------------------
+eclipse.buildId=3.5.9.201911141419
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -data C:\UdeM\ift3911\devoir2\Microwave -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.ui 4 4 2025-03-20 18:19:36.051
+!MESSAGE Unable to create part
+!SUBENTRY 1 org.eclipse.ui 4 0 2025-03-20 18:19:36.051
+!MESSAGE An error occured while opening the file.
+
+This might have happened because you tried to open a statechart with File->Open File.
+This is not supported. Please import the file into a project instead.
+
+!ENTRY org.eclipse.launchbar.core 2 0 2025-03-20 18:20:26.730
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2025-03-20 18:20:26.730
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2025-03-20 18:20:26.730
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+!SESSION 2025-03-20 18:30:49.024 -----------------------------------------------
+eclipse.buildId=3.5.9.201911141419
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -data C:\UdeM\ift3911\devoir2\Microwave -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.help 4 0 2025-03-20 18:38:50.929
+!MESSAGE Required attribute "label" missing from "topic" element in "/org.yakindu.sct.doc.user/help/user-guide/c-domain-toc.xml" (skipping element)
+
+!ENTRY org.eclipse.help 4 0 2025-03-20 18:38:50.941
+!MESSAGE Required attribute "label" missing from "topic" element in "/org.yakindu.sct.doc.user/help/user-guide/scxml_domain-toc.xml" (skipping element)
+
+!ENTRY org.eclipse.help.base 2 0 2025-03-20 18:39:02.704
+!MESSAGE Unable to consume Lucene index from bundle 'org.eclipse.cdt.doc.user_5.4.0.201809121146 [113]'. The index should be rebuilt with Lucene 7.0.0
