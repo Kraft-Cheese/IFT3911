@@ -1,6 +1,6 @@
 ﻿<html>
 <head>
-    <title>IFT3911 DM1</title>
+    <title>IFT3911 DM2</title>
     <style type="text/css">
         table
         {
@@ -254,14 +254,76 @@
 
     <h2>Tâche 3 - Design logiciel</h2>
     <h3>Révision du diagramme de classe</h3>
-        <p>
-            <!--METTRE IMAGE ET FILE PATH-->
+    <p>./Design/ClassDiagram.png</p>
+    <p>
+        <img src="./Design/ClassDiagram.png" alt="Diagramme de classe" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+    </p>
 
+    <div>
+        <p>
+            Ajouts des attributs et des cardinalités qui manquaient dans la première version. 
         </p>
+        <p>
+            Ajout des fonctionnalités Admin qui manquaient également dans la première version du diagramme. 
+        </p>
+        <ul>
+            <li>Nous avons suivi une logique MVC pour séparer le comportement de l’application pour un client puis pour un administrateur. En violet: Model, en orange: controller, en turquoise: view.</li>
+            <li>Selon nous, les deux utilisateurs navigueront à travers des menus en ligne de commande (pour le moment) afin de faire leurs sélections et choisir leur prochaine action. </li> <br>
+            <li><span><i>Pour l’utilisateur</i></span>, le menu principal (dans CustView) lui permettra de choisir s’il veut chercher un Parcours ou payer pour une réservation. S’il veut chercher un parcours, 
+                s’affichera un formulaire dans lequel il entrera ses critères de recherche, puis une liste sera affichée après avoir passé par CustController et SysModel pour chercher les 
+                bonnes données. À partir de cette liste, il pourra par la suite sélectionner le parcours qui l’intéresse et en voir plus d’informations, puis à partir de cette page il peut choisir
+                 de faire une réservation. Ceci le mènera au formulaire de réservation dans lequel il pourra entrer ses données et ce qui instantiera une nouvelle Réservation (voir le diagramme de séquence). </li> <br>
+            <li><span><i>Pour l'administrateur</i></span>, à partir du menu principal il pourra choisir s’il veut consulter une liste de parcours, de modes de transport, de compagnies ou de hubs. Après il pourra choisir la 
+                sous-classe qu’il désire puis une liste s’affichera (affEntityList). Il pourra ensuite modifier ou supprimer un élément à un index donné. Pour modifier, l’information de l’Entity sera affichée 
+                (affEntityInfo) et il aura le choix de quel(s) attribut(s) changer. Pour supprimer, l’élément sera simplement supprimé du ArrayList correspondant à l’entité dans SysModel. Pour ajouter/créer une entité, 
+                l’administrateur sélectionnera cette option et ceci le mènera à un formulaire d’instantiation propre à l’entité (affNewEntityForm)</li>
+        </ul>
+        <p>Ajout de la classe Entity</p>
+        <ul>
+            <li>On voulait généraliser davantage les différents objets qui existent dans ce projet. En créant cette classe, on ouvre la possibilité d’étendre l’application en y ajoutant des sous-types.</li>
+            <li>Ceci nous permet également d’utiliser Entity comme un type “Générique” dans les actions de Admin, ce qui lui permettra d’avoir des méthodes plus réutilisables. </li>
+        </ul>
+    </div>
+
+    <h3>Identification des modules réutilisables</h3>
+    <p>Les domaines des classes seront abordés dans la tâche 4, mais on peut déjà observer des classes plus réutilisables que d’autres. <br>
+
+        <span><b>CustView</b></span> et <span><b>AdminView</b></span> pourraient afficher des choses pour d’autres applications (comme du e-commerce), pas seulement une application de réservation de voyages. 
+        
+        <span><b>User</b></span> est notre classe la plus générale et peut être étendue pour nous donner plusieurs types d’utilisateurs. <br>
+        
+        <span><b>Entity</b></span> a également un attribut et des méthodes qui seront reprises dans toutes ses spécialisations. Dans un autre contexte, comme un magasin, Entity pourrait représenter toute la marchandise. <br>
+        
+        <span><b>Paiement</b></span> représente simplement un système de paiement avec une classe qui pourrait, encore une fois, être reprise dans d’autres contextes. <br></p>
+
     <h3>Révision des diagrammes de séquence</h3>
-        <p></p>
+        <p>Nous avons adapté les diagrammes de séquence à notre nouveau diagramme de classes</p>
+        <h4>Vérifier des vols ou des itineraire</h4>
+        <p>./Design/verif_vols_itineraires.png</p>
+        <p>
+            <img src="./Design/verif_vols_itineraire.png" alt="Séquence: vérifier vols et itinéraires" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+
+        <h4>Réserver un siège</h4>
+        <p>./Design/reserver_un_siege.png</p>
+        <p>
+            <img src="./Design/reserver_un_siege.png" alt="Séquence: réserver un siège" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+
+        <h4>Payer pour un siège</h4>
+        <p>./Design/payer_pour_un_siege.png</p>
+        <p>
+            <img src="./Design/payer_pour_un_siege.png" alt="Séquence: payer pour un siège" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+        
+        
     <h3>Révision du diagramme de paquets</h3>
-        <p></p>
+    <p>./Design/paquets.png</p>
+    <p>
+        <img src="./Design/paquets.png" alt="Diagramme de paquets" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+    </p>
+
+    
     <h3>Révision des contraintes OCL</h3>
     <div>
         <p>
@@ -306,15 +368,90 @@
             </ol>
         </p>
     </div>
-    <h3>Identification des modules réutilisables</h3>
-        <p></p>
+
 
     <h2>Tâche 4 - Qualité du design</h2>
         <p></p>
-    <h3>Discussion du couplage et de la cohésion des modules</h3>
-        <p></p>
-    <h3>Discussion du fardeau des classes</h3>
-        <p></p>
+    <h3>Discussion du couplage</h3>
+        <div>
+            <h4>Fardeaux</h4>
+            <p>Le fardeau a un lien étroit avec le domaine des classes. En raisonnant puis en calculant le fardeau, on constate que nos classes 
+                appartiennent à 2 domaines principaux: </p>
+            <ul>
+                <li>Domaine du métier: </li>
+                <li>Domaine de l'application: </li>
+            </ul>
+            <p>En calculant seulement une partie du fardeau, on peut constater que les classes propres 
+                à notre application (et donc, non-réutilisables) ont un fardeau bien plus élevé que celles qu’on a nommées réutilisables à la tâche 3.</p>
+            <p>On n’a pas besoin de calculer le fardeau entier pour distinguer les deux domaines de classes. En effet, les classes correspondant au domaine 
+                du métier auront moins de dépendances, car elles utilisent des structures de données n’ayant que quelques classes différentes. Par exemple,
+                 Paquebot aura, dans ses attributs, une liste de Port et une instance de Cie_croisiere. Tandis que, pour des classes ayant un comportement central 
+                 à notre application, comme SysModel, le fardeau sera bien plus élevé, car il contient des listes avec plusieurs types d’Entity distincts. En effet, 
+                 comme on discutera dans le couplage, ceci peut être un exemple de mauvais couplage puisqu’on donne énormément de dépendances à la classe Model. </p>
+            <p>En lisant les association unidirectionnelles, nous avons “isolé” les classes de domaine plus bas, notamment Entity. </p>
+        </div>
+
+        <div>
+            <h4>Types de couplage (évaluation qualitative)</h4>
+            <p><i>Couplage d'héritage</i></p>
+            <ul>
+                <li>Pour toutes nos entités, afin de pouvoir les utiliser dans une même structure de données (dans SysModel) et assurer un comportement uniforme (ordonnable, etc) </li>
+            </ul>
+            <p><i>Couplage par contenu</i></p>
+            <ul>
+                <li>Les attributs sont privés et on passera toujours par des getters et setters pour modifier tout attribut (d’un trajet par exemple) ou liste (par un setter qui ajoute par la suite)</li>
+                <li>Ainsi, on n’accède jamais directement aux attributs d’une classe. </li>
+            </ul>
+            <p><i>Couplage commun</i></p>
+            <ul>
+                <li>✅ La seule variable globale est la “base de données” dans la classe “sysModel”. Elle est modifiable que deux fois. </li>
+                <li>✅ La liste de réservations actives est accessible seulement quand un utilisateur crée une réservation, la paie ou le temps s’est écoulé (la désactiver)</li>
+                <li>✅ Les listes d’entités que par l’adminController, s’il veut modifier une entité, la supprimer ou en ajouter une</li>
+                <li>✅ En pratique, ces listes ne seront pas statiques, puis il faudra que les controlleurs passent par une instance de SysModel pour les modifier. </li>
+                <li>❌ Une possible faiblesse de notre implémentation est le fait que deux classes accèdent au SysModel au lieu d'une seule, ce qui augmente le couplage de la classe. 
+                    On pourrait créer une interface ou une classe abstraite comme "controlleur parent". 
+                </li>
+            </ul>
+            <p><i>Couplage par contrôle</i></p>
+            <ul>
+                <li>✅ Le flux de contrôle est séparé en plusieurs méthodes au sein d’une même classe (le controller). On s’assure ainsi que toutes les actions possibles que le client peut prendre se trouvent 
+                    dans une seule classe, facilitant ainsi la maintenance et l’ajout d’actions. Ainsi, tout flux qui dépend d’un paramètre sera traité à la même place. </li>
+            </ul>
+            <p><i>Couplage par paquet & de données</i></p>
+            <ul>
+                <li>✅ Lorsqu’on passe une structure de données ou une classe en paramètre, on ne passe que l’essentiel quand on peut. </li>
+                <li>✅ La méthodecheckreservation utilise que le numéro de réservation au lieu de son instance, pour la vérifier dans la liste de réservations actives. </li>
+                <li>❌ Cependant, dans resultatsSearch, on passe une instance complète de ModeTransport en paramètre. ceci serait à corriger dans notre prochaine itération du 
+                    diagramme, car il y a peu d’utilité à passer une instance au complet si c’est juste pour filtrer des résultats. </li>
+            </ul>
+
+        </div>
+    <h3>Discussion de la cohésion</h3>
+        <p>La plupart de notre logique d’application se trouve dans le “coeur” MVC du projet. </p>
+        <p>✅ On évite ainsi la <b>cohésion accidentelle</b> en donnant peu de responsabilités à chaque classe.
+            <ul>
+                <li>❌ Cependant, on trouve que les classes “Controller” et “View” font beaucoup de choses qu’on pourrait séparer davantage pour rendre le code encore plus maintenable. (ca porurait par contre 
+                    augmenter le couplage et les dépendances entre les classes)</li>
+            </ul>
+        </p>
+
+        <p>
+            ✅ La <b>cohésion logique</b> est évitée en utilisant des classes abstraites pour tous les modes de transport par exemple, qui auront chacune un comportement différent au moment de la réservation. 
+        </p>
+        <ul>
+            <li>La méthode showInfo() dans la classe abstraite “Parcours” affichera des données différentes selon le type. Elle sera implémentée dans “vol”, “itinéraire” et “trajet” au lieu d’être dans une grosse classe qui fait les 3. Ceci rend plus facile les changements à ces parcours-là, car il ne faudra pas toucher à la classe parent. </li>
+        </ul>
+
+        <p>❌ <b>Cohésion temporelle</b> et procédurale sont présentes dans les Controller et SysModel, ce qui n’est pas idéal. </p>
+        <ul>
+            <li>Tel que mentionné dans la cohésion accidentelle, on pourrait utiliser des “Managers” ou des classes séparées qui géreraient les formulaires d’utilisateur, le processus de recherche, etc… Ceci augmentera la réutilisabilité du module. C’est à retravailler avant d’implémenter le projet. </li>
+        </ul>
+
+        <p>✅ <b>Cohésion fonctionnelle</b>: les “views” s’occupent que d’afficher de l’information et naviguer à travers les pages de menu de l’interface. la méthode “showInfo” se trouve que pour les parcours et sera implémentée par ses enfants.</p>
+        <ul>
+            On s’assure ainsi que la classe d’un parcours nous permet simplement de lire (getters) ses attributs, les imprimer au besoin (showInfo) et les modifier (setters). On n’opère que sur l’objet actuel. 
+        </ul>
+
     <h3>Graphe IA et justification</h3>
     <img src="./Diagrammes/GrapheIA.jpg" alt="Graphe IA" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
     <p>
@@ -334,6 +471,9 @@
         </p>
 
     <h3>Diagramme de paquets</h3>
+        <p>TODO : COURT TEXTE SUR POURQUOI NOS PAQUETS SONT BONS</p>
+
+    <!--<h3>Diagramme de paquets</h3>
     <p>
         Nous avons choisi de suivre quelque chose similaire à la structure MVC pour notre diagramme de classe. Ainsi, pour le diagramme de paquets nous avons souhaiter  faire similairement. Le premier paquet "Core" représente le controlleur, le paquet "Interface" représente
         la vue et le paquet "Transport" représente le modèle. Dans "Interface", nous avons inclut les vues des clients et des administrateures avec deux classes concretes.
@@ -349,7 +489,34 @@
         <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
             <image href="./Diagrammes/Diag_Pack.png" width="100%" height="100%"  />
         </svg>
-    </p>
+    </p>-->
+
+    <h3>Justification de l'application des principes de conception</h3>
+    <h4>LSP ✅ </h4>
+    <p>Les compagnies (Cie), modes de transport (ModeTransport), lieux (Hub), et parcours (Parcours) sont tous des <b>sous-types</b> de la classe Entity. Ils partagent l’attribut “id” qui est un entier. Ceci permet au Admin d’effectuer des modifications,  créer et détruire toutes les instances d’un Entity. </p>
+    <p>De plus, à chaque niveau de spécialisation (e.g: Entity (0) → ModeTransport (1) → Avion (2)), on ajoute des attributs et des fonctionnalités. Ainsi, <b>les sous-types ne font jamais moins que le type parent</b> et assurent qu’ils seront utilisables partout où un Entity ou ModeTransport/Cie/Hub/Parcours est attendu. </p>
+    <p>Les 3 ArrayLists dans SysModel, par exemple, comprendront des instances mixtes d’une classe parent, car on veut avoir une place où trouver ces données sans pour autant sur-spécialisant la classe en créant des listes spécifiques (comme allAvion, par exemple). Nous laissons ainsi de la place à <b>l’extension du projet</b> et à l’ajout de modes de transport ou parcours de types différents comme, par exemple, des bus. </p>
+    On n’a également <b>pas de logique conditionnelle basée sur le type</b>. Dans AdminController, les fonctions de modification et de suppression (delete) reçoivent en paramètre un index et la liste de l’élément à modifier. Ceci assure une flexibilité dans le design. 
+    
+    <h4>OCP ✅ </h4>
+    <p>Nous utilisons <b>que des classes concrètes pour l’implémentation assurée des modes de transport, classes, hubs et parcours</b>. Tel qu’énoncé plus tôt, on prend avantage de l’héritage pour laisser place à d’éventuels ajouts. Il suffirait donc d’ajouter une sous-classe à la classe parent puis elle héritera de toutes les fonctionnalités nécessaires. </p>
+    <p>Les seules classes concrètes sont celles avec lesquelles l’utilisateur interagira. Par exemple, il n’interagit pas avec la classe abstraite Parcours, mais avec Vol ou Itinéraire pour voir l’information. </p>
+
+    <h4>DIP ✅ </h4>
+    <p>Tout d’abord, toutes les classes concrètes proviennent d’un parent abstrait et n’ont <b>aucun héritage avec d’autres classes concrètes</b>. Elles ont seulement un lien direct avec une classe concrète lorsque cette dernière est obligée d’y être reliée. </p>
+    Par exemple, un Paquebot aura une liste d’instance de Port, puisqu’il peut passer à travers plusieurs ports. Il ne serait pas logique, étant donné le contexte du projet, d’avoir une liste de simplement ModeTransport, car cela permettrait à un Paquebot d’avoir une liste d’Aéroports, par exemple. 
+
+    <h4>ISP 😗</h4>
+    <p>On n’utilise pas d’interfaces dans notre projet, car on se base beaucoup plus sur les classes abstraites pour implémenter une logique d’application et éviter la redondance d’attributs. Cependant, nous comprenons que l’ISP est utile pour éviter que des classes implémentent des méthodes dont elles n’ont pas besoin. On juge simplement que, étant donné le contexte, il y a peu de méthodes qui pourraient être implémentées inutilement par nos sous-types. </p>
+
+    <h4>CRP ❌😔</h4>
+    <p>Malheureusement on se base beaucoup sur l’héritage pour éviter la redondance des méthodes, qui seront overriden s’il faut les spécialiser. Ceci mène effectivement à de la duplication de code et peut rendre la maintenance du logiciel difficile. </p>
+    <p>On pense notamment à la méthode ShowInfo qui pourrait avoir plusieurs implémentations différentes sans pour autant ré-écrire ou modifier son comportement à chaque sous-classe. </p>
+    <p>On pourrait, tel que proposé dans les notes de cours, implémenter un patron Strategy dans le devoir 3 pour permettre à des sous-types de changer de comportement sans entrer dans la fonction et changer le code. </p>
+
+    <h4>ACP</h4>
+
+    TODO OTHERS 
 
 </body>
 </html>
