@@ -243,7 +243,7 @@
                 <li>
                     <i>Appuyer sur stop arrête tout le processus et met le système au repos.</i>
                     <br><br>
-                    Nous avons interprété le fait de mettre le système au repos de le recommencer. Donc, quand on appuie sur stop à n'importe quel moment, que ce soit pendant la cuisson ou pendant de l'input dans le clavier, on interromp tout et on peut recommencer. 
+                    Nous avons interprété le fait de mettre le système au repos de le recommencer. Donc, quand on appuie sur stop à n'importe quel moment, que ce soit pendant la cuisson ou pendant de l'input dans le clavier, on interromp tout et on peut recommencer.
                 </li>
                 <br>
                 <li>
@@ -321,21 +321,23 @@
     <h3>Justification de l'application des principes de conception</h3>
         <p></p>
 
-    <!--<h3>Diagramme de paquets</h3>
+    <h3>Diagramme de paquets</h3>
     <p>
-        Nous avons choisi de suivre quelque chose similaire à la structure MVC. Ainsi, le premier paquet "Core" représente le controlleur, le paquet "Interface" représente
-        la vue et le paquet "Transport" représente le modèle. Dans "Interface", nous avons inclut la singulière classe "Interface" pour pouvoir éventuellement ajouter d'autres vues.
+        Nous avons choisi de suivre quelque chose similaire à la structure MVC pour notre diagramme de classe. Ainsi, pour le diagramme de paquets nous avons souhaiter  faire similairement. Le premier paquet "Core" représente le controlleur, le paquet "Interface" représente
+        la vue et le paquet "Transport" représente le modèle. Dans "Interface", nous avons inclut les vues des clients et des administrateures avec deux classes concretes.
         Dans "Transports", nous avons inclus les classes qui représentent les entités du domaine, soit les compagnies, les parcours, les moyens de transport et les places (sièges et cabines).
-        Notre logique pour inclure certaines classes dans certains paquets était selon leur degré de communication dans le diagramme de classes et notre conception de l'eventuel programme.
         Dans "Core", nous avons inclus les classes qui représentent les actions que le système peut effectuer, soit les réservations et les paiements, ainsi qu'une communication avec
-        l'interface via la classe "System" et l'entité de "Passager", qui existe seulement dans le contexte d'une réservation.
+        l'interface via la classe "System" et l'entité de "Passager", qui existe seulement dans le contexte d'une réservation. Le paquet "Interface" est totalement instable, mais puisque il est totalement concret et aucun autre paquet ne dépend de lui, il n'y a pas de problème.
+        Le paquet "Core" est instable, mais il est stable par rapport à "Interface" et "Transport", donc c'est acceptable.
+        Le paquet "Transport" est unstable, mais il dépend de "Core" qui est plus stable, de plus il est generallement concret.
+        Le diagramme de paquets est aussi generallement acyclic avec seulement des dependances sur core et non les autres paquets qui sont moins stables.
     </p>
     <p>
         <b>Chemin vers le fichier .vpp ./diagrammes/vpp_files/Design/Package/PackageDiagram3911.vpp</b>
         <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./diagrammes/Diag_Pack.jpg" width="100%" height="100%"  />
+            <image href="./Diagrammes/Diag_Pack.png" width="100%" height="100%"  />
         </svg>
-    </p>-->
+    </p>
 
 </body>
 </html>
