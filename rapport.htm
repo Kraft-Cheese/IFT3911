@@ -92,7 +92,7 @@
 
     <h3>Modélisation du réseau de Pétri</h3>
     <p>
-        <img src="./Diagrammes/PetriNetTunnel.png" alt="Réseau de Pétri" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        <img src="./Reseau_de_petri/PetriNetTunnel.png" alt="Réseau de Pétri" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
     </p>
 
     <h3>Analyse du réseau de Pétri</h3>
@@ -228,7 +228,7 @@
     <p>
         <b>Chemin vers le répertoire du State Chart = ./Statechart/model/microwave.sct</b>
         <p>
-            <img src="./Diagrammes/StateChart.png" alt="Statechart" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+            <img src="./Statechart/StateChart.png" alt="Statechart" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
         </p>
     </p>
     <h3>Précisions</h3>
@@ -323,7 +323,6 @@
         <img src="./Design/paquets.png" alt="Diagramme de paquets" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
     </p>
 
-    
     <h3>Révision des contraintes OCL</h3>
     <div>
         <p>
@@ -453,7 +452,7 @@
         </ul>
 
     <h3>Graphe IA et justification</h3>
-    <img src="./Diagrammes/GrapheIA.jpg" alt="Graphe IA" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+    <img src="./Design/GrapheIA.jpg" alt="Graphe IA" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
     <p>
         Le graphe IA montre que nos trois paquets respectent globalement les bonnes pratiques de conception. Le paquet <strong>Interface</strong> est totalement instable (I = 1) et totalement concret (A = 0), ce qui est acceptable, car aucun autre paquet n’en dépend. Il se trouve ainsi sur la diagonale principale du graphe, ce qui respecte le <strong>Stable Abstractions Principle (SAP)</strong>. <br><br>
         Le paquet <strong>Transports</strong> est également bien positionné : il est instable (I = 0.8) et peu abstrait (A = 0.2), ce qui convient à un paquet de modèle d'affaires contenant surtout des entités concrètes. Il se trouve exactement sur la diagonale principale du graphe IA, ce qui montre un bon équilibre entre abstraction et instabilité. <br><br>
@@ -469,27 +468,6 @@
             <li><strong>ACP</strong> : Notre diagramme de paquets est globalement acyclique. Les dépendances sont orientées vers <em>Core</em>, et aucun paquet ne dépend de <em>Interface</em> (un paquet instable), ce qui évite les cycles.</li>
         </ul>
         </p>
-
-    <h3>Diagramme de paquets</h3>
-        <p>TODO : COURT TEXTE SUR POURQUOI NOS PAQUETS SONT BONS</p>
-
-    <!--<h3>Diagramme de paquets</h3>
-    <p>
-        Nous avons choisi de suivre quelque chose similaire à la structure MVC pour notre diagramme de classe. Ainsi, pour le diagramme de paquets nous avons souhaiter  faire similairement. Le premier paquet "Core" représente le controlleur, le paquet "Interface" représente
-        la vue et le paquet "Transport" représente le modèle. Dans "Interface", nous avons inclut les vues des clients et des administrateures avec deux classes concretes.
-        Dans "Transports", nous avons inclus les classes qui représentent les entités du domaine, soit les compagnies, les parcours, les moyens de transport et les places (sièges et cabines).
-        Dans "Core", nous avons inclus les classes qui représentent les actions que le système peut effectuer, soit les réservations et les paiements, ainsi qu'une communication avec
-        l'interface via la classe "System" et l'entité de "Passager", qui existe seulement dans le contexte d'une réservation. Le paquet "Interface" est totalement instable, mais puisque il est totalement concret et aucun autre paquet ne dépend de lui, il n'y a pas de problème.
-        Le paquet "Core" est instable, mais il est stable par rapport à "Interface" et "Transport", donc c'est acceptable.
-        Le paquet "Transport" est unstable, mais il dépend de "Core" qui est plus stable, de plus il est generallement concret.
-        Le diagramme de paquets est aussi generallement acyclic avec seulement des dependances sur core et non les autres paquets qui sont moins stables.
-    </p>
-    <p>
-        <b>Chemin vers le fichier .vpp ./diagrammes/vpp_files/Design/Package/PackageDiagram3911.vpp</b>
-        <svg width="1000px" height="400px" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-            <image href="./Diagrammes/Diag_Pack.png" width="100%" height="100%"  />
-        </svg>
-    </p>-->
 
     <h3>Justification de l'application des principes de conception</h3>
     <h4>LSP ✅ </h4>
@@ -508,15 +486,34 @@
 
     <h4>ISP 😗</h4>
     <p>On n’utilise pas d’interfaces dans notre projet, car on se base beaucoup plus sur les classes abstraites pour implémenter une logique d’application et éviter la redondance d’attributs. Cependant, nous comprenons que l’ISP est utile pour éviter que des classes implémentent des méthodes dont elles n’ont pas besoin. On juge simplement que, étant donné le contexte, il y a peu de méthodes qui pourraient être implémentées inutilement par nos sous-types. </p>
+    
+    <h4>SRP ✅</h4>
+    <p>
+        Chaque paquet a une responsabilité claire, la vue pour <em>Interface</em>, le traitement logique pour <em>Core</em>, et les données d'affaires pour <em>Transports</em>.
+    </p>
+    <p>De plus, le modèle MVC et a façon dont nous avons façonné l'héritage de nos classe assure que le rôle de chaque classe est bien défini. 
+        Les classes de view ne font que de l'affichage, les classes de contrôleur ne font que de la logique de contrôle et les classes de modèle ne font que de la gestion de données.
+        Cependant, on pourrait spécialiser davantage les classes contrôleur et de view. 
+    </p>
 
     <h4>CRP ❌😔</h4>
     <p>Malheureusement on se base beaucoup sur l’héritage pour éviter la redondance des méthodes, qui seront overriden s’il faut les spécialiser. Ceci mène effectivement à de la duplication de code et peut rendre la maintenance du logiciel difficile. </p>
     <p>On pense notamment à la méthode ShowInfo qui pourrait avoir plusieurs implémentations différentes sans pour autant ré-écrire ou modifier son comportement à chaque sous-classe. </p>
     <p>On pourrait, tel que proposé dans les notes de cours, implémenter un patron Strategy dans le devoir 3 pour permettre à des sous-types de changer de comportement sans entrer dans la fonction et changer le code. </p>
 
-    <h4>ACP</h4>
+    <h4>ACP ✅ </h4>
+    <p>Notre diagramme de paquets est globalement acyclique. Les dépendances sont orientées vers <em>Core</em>, et aucun paquet ne dépend de <em>Interface</em> (un paquet instable), ce qui évite les cycles.</p>
 
-    TODO OTHERS 
+    <h4>SAP ✅ </h4>
+    <p>Les paquets <em>Interface</em> et <em>Transports</em> respectent bien ce principe car leur niveau d’abstraction est proportionnel à leur instabilité. Le paquet <em>Core</em> est stable mais manque un peu d’abstraction.</p>
 
+    <h4>SDP ✅ </h4>
+    <p>Les paquets instables (<em>Interface</em> et <em>Transports</em>) dépendent de <em>Core</em>, qui est plus stable. Il y a toutefois un léger écart à ce principe car <em>Transports</em> dépend d’un paquet qui est plus stable (bien) mais peu abstrait (moins bien).\</p>
+
+<br>
+<br>
+Merci!
+<br>
+<br>
 </body>
 </html>
