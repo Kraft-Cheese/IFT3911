@@ -458,7 +458,7 @@
         Le paquet <strong>Transports</strong> est également bien positionné : il est instable (I = 0.8) et peu abstrait (A = 0.2), ce qui convient à un paquet de modèle d'affaires contenant surtout des entités concrètes. Il se trouve exactement sur la diagonale principale du graphe IA, ce qui montre un bon équilibre entre abstraction et instabilité. <br><br>
         Le seul paquet légèrement problématique est <strong>Core</strong>, qui est relativement stable (I ≈ 0.64) mais pas assez abstrait (A = 0.2). Cela signifie que ce paquet, bien que central, pourrait gagner en flexibilité et en maintenabilité en introduisant davantage d’interfaces ou de classes abstraites pour respecter pleinement le <strong>SAP</strong>. Malgré tout, son écart à la diagonale est modéré comme montré par le graphe IA.
     </p>
-    <h3>Justification de l'application des principes de conception</h3>
+    <!-- <h3>Justification de l'application des principes de conception</h3>
         <p>
             Nous avons structuré notre système selon une architecture inspirée du modèle MVC afin de bien séparer les responsabilités. Cette séparation respecte plusieurs principes de conception orientée objet :
         <ul>
@@ -467,7 +467,7 @@
             <li><strong>SAP</strong> : Les paquets <em>Interface</em> et <em>Transports</em> respectent bien ce principe car leur niveau d’abstraction est proportionnel à leur instabilité. Le paquet <em>Core</em> est stable mais manque un peu d’abstraction.</li>
             <li><strong>ACP</strong> : Notre diagramme de paquets est globalement acyclique. Les dépendances sont orientées vers <em>Core</em>, et aucun paquet ne dépend de <em>Interface</em> (un paquet instable), ce qui évite les cycles.</li>
         </ul>
-        </p>
+        </p> -->
 
     <h3>Justification de l'application des principes de conception</h3>
     <h4>LSP ✅ </h4>
