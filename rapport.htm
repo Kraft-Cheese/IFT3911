@@ -317,9 +317,21 @@
         <p></p>
     <h3>Graphe IA et justification</h3>
     <img src="./Diagrammes/GrapheIA.jpg" alt="Graphe IA" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
-        <p>TODO : COURT TEXTE SUR POURQUOI NOS PAQUETS SONT BONS</p>
+    <p>
+        Le graphe IA montre que nos trois paquets respectent globalement les bonnes pratiques de conception. Le paquet <strong>Interface</strong> est totalement instable (I = 1) et totalement concret (A = 0), ce qui est acceptable, car aucun autre paquet n’en dépend. Il se trouve ainsi sur la diagonale principale du graphe, ce qui respecte le <strong>Stable Abstractions Principle (SAP)</strong>. <br><br>
+        Le paquet <strong>Transports</strong> est également bien positionné : il est instable (I = 0.8) et peu abstrait (A = 0.2), ce qui convient à un paquet de modèle d'affaires contenant surtout des entités concrètes. Il se trouve exactement sur la diagonale principale du graphe IA, ce qui montre un bon équilibre entre abstraction et instabilité. <br><br>
+        Le seul paquet légèrement problématique est <strong>Core</strong>, qui est relativement stable (I ≈ 0.64) mais pas assez abstrait (A = 0.2). Cela signifie que ce paquet, bien que central, pourrait gagner en flexibilité et en maintenabilité en introduisant davantage d’interfaces ou de classes abstraites pour respecter pleinement le <strong>SAP</strong>. Malgré tout, son écart à la diagonale est modéré comme montré par le graphe IA.
+    </p>
     <h3>Justification de l'application des principes de conception</h3>
-        <p></p>
+        <p>
+            Nous avons structuré notre système selon une architecture inspirée du modèle MVC afin de bien séparer les responsabilités. Cette séparation respecte plusieurs principes de conception orientée objet :
+        <ul>
+            <li><strong>SRP</strong> : Chaque paquet a une responsabilité claire, la vue pour <em>Interface</em>, le traitement logique pour <em>Core</em>, et les données d'affaires pour <em>Transports</em>.</li>
+            <li><strong>SDP</strong> : Les paquets instables (<em>Interface</em> et <em>Transports</em>) dépendent de <em>Core</em>, qui est plus stable. Il y a toutefois un léger écart à ce principe car <em>Transports</em> dépend d’un paquet qui est plus stable (bien) mais peu abstrait (moins bien).</li>
+            <li><strong>SAP</strong> : Les paquets <em>Interface</em> et <em>Transports</em> respectent bien ce principe car leur niveau d’abstraction est proportionnel à leur instabilité. Le paquet <em>Core</em> est stable mais manque un peu d’abstraction.</li>
+            <li><strong>ACP</strong> : Notre diagramme de paquets est globalement acyclique. Les dépendances sont orientées vers <em>Core</em>, et aucun paquet ne dépend de <em>Interface</em> (un paquet instable), ce qui évite les cycles.</li>
+        </ul>
+        </p>
 
     <h3>Diagramme de paquets</h3>
     <p>
