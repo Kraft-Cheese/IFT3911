@@ -300,7 +300,7 @@
                     <i>Un siège réservé devient assigné à un passager une fois payé: le siège est donc confirmé.</i>
                     <br><br>
                     context Reservation::setValid() <br>
-                    &nbsp;&nbsp;&nbsp;&nbsp; post : not self.place.DispoPlace <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; post : custController.chargerCarte() = true implies not self.place.DispoPlace <br>
                 </li>
                 <br>
             </ol>
