@@ -1,0 +1,125 @@
+<html>
+<head>
+    <title>IFT3911 DM2</title>
+    <style type="text/css">
+        table
+        {
+            border: outset 2px black;
+            border-collapse: collapse;
+        }
+        th
+        {
+            border-bottom: double 2px black;
+        }
+        td
+        {
+            border-bottom: solid 1px black;
+        }
+        .first_col
+        {
+            border-right: double 2px black;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">
+        IFT 3911 - Devoir 2 - Mike</h1>
+    <h2>
+        Information générale</h2>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Amélie Coughlan
+        <br />
+        <span style="font-weight: bold;">Matricule: </span> 9813
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>amelie.therese.coughlan@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span> 
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Cassandre Hamel
+        <br />
+        <span style="font-weight: bold;">Matricule: </span> 0863
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>cassandre.hamel.1@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span> 
+    </p>
+    <p>
+        <span style="font-weight: bold;">Nom: </span>Alessandra Mancas
+        <br />
+        <span style="font-weight: bold;">Matricule: </span>9098
+        <br />
+        <span style="font-weight: bold;">Courriel: </span>alessandra.thais.mancas@umontreal.ca
+        <br />
+        <span style="font-weight: bold;">temps mis: </span> 
+    </p>
+    <h2>
+        Distribution des tâches</h2>
+    <p>
+        <span style="font-weight: bold;">Soumetteur: </span>Alessandra Mancas
+    </p>
+    <table cellpadding="7px">
+        <thead>
+            <tr>
+                <th>
+                    Amélie
+                </th>
+                <th>
+                    Cassandre
+                </th>
+                <th>
+                    Alessandra
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+            </tr>
+
+        </tbody>
+    </table>
+
+    <h2>Tâche 1 - Patrons de conception mentionnés </h2>
+
+    <h3>Diagramme de classe</h3>
+
+    <h4>Fabrique (variante: fabrique abstraite)</h4>
+    <ul>
+        <li>Nous avons choisi d'utiliser le patron de fabrique abstraite, car il nous permet d'isoler la création de "familles" d'objets.
+            Ici, les familles sont les 3 types de voyages que l'on peut faire (vol, train, bateau), puis leurs moyens de transport, hubs et companies associés. 
+        </li>
+        <li>C'est une conception utile dans le cas où on voudrait ajouter un nouveau type d'entité de transport, car il suffirait d'ajouter
+            une fabrique concrète.</li>
+        <li>Nous avons gardé l'héritage entre les classes abstaites de chaque entité et la classe Entity, car elle permet de suivre le LSP. </li>
+    </ul>
+
+    <h4>État</h4>
+    <ul>
+        <li>Nous avons sorti l'état de la classe Place, qui comporte les sièges et les cabines. Puisqu'un
+            utilisateur peut en réserver, leur état est soit Disponible, soit Reserved (occupé). En sortant cet état
+        de Place et en le mettant dans deux classes séparées, nous pourrons accorder un comportement unique à chacune des
+    variantes des sièges (ex: logique de réservation). </li>
+    </ul>
+
+
+    <h3>Diagrammes de séquence / collaboration </h3>
+
+    <h2>Tâche 2 - Patrons de conception de notre choix </h2>
+
+    <h2>Tâche 3 - Diagramme de paquets</h2>
+
+    <h2>Tâche 4 - Discussion de la conception</h2>
+
+    <h2>Tâche 5 - Implémentation en Java</h2>
+
+
+
+    
+<br>
+<br>
+Merci!
+<br>
+<br>
+</body>
+</html>
