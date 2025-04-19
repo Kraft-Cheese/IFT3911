@@ -33,7 +33,7 @@
         <br />
         <span style="font-weight: bold;">Courriel: </span>amelie.therese.coughlan@umontreal.ca
         <br />
-        <span style="font-weight: bold;">temps mis: </span> 
+        <span style="font-weight: bold;">temps mis: </span>
     </p>
     <p>
         <span style="font-weight: bold;">Nom: </span>Cassandre Hamel
@@ -42,7 +42,7 @@
         <br />
         <span style="font-weight: bold;">Courriel: </span>cassandre.hamel.1@umontreal.ca
         <br />
-        <span style="font-weight: bold;">temps mis: </span> 
+        <span style="font-weight: bold;">temps mis: </span>
     </p>
     <p>
         <span style="font-weight: bold;">Nom: </span>Alessandra Mancas
@@ -51,7 +51,7 @@
         <br />
         <span style="font-weight: bold;">Courriel: </span>alessandra.thais.mancas@umontreal.ca
         <br />
-        <span style="font-weight: bold;">temps mis: </span> 
+        <span style="font-weight: bold;">temps mis: </span>
     </p>
     <h2>
         Distribution des tâches</h2>
@@ -87,11 +87,11 @@
     <h4>Fabrique (variante: fabrique abstraite)</h4>
     <ul>
         <li>Nous avons choisi d'utiliser le patron de fabrique abstraite, car il nous permet d'isoler la création de "familles" d'objets.
-            Ici, les familles sont les 3 types de voyages que l'on peut faire (vol, train, bateau), puis leurs moyens de transport, hubs et companies associés. 
+            Ici, les familles sont les 3 types de voyages que l'on peut faire (vol, train, bateau), puis leurs moyens de transport, hubs et companies associés.
         </li>
         <li>C'est une conception utile dans le cas où on voudrait ajouter un nouveau type d'entité de transport, car il suffirait d'ajouter
             une fabrique concrète.</li>
-        <li>Nous avons gardé l'héritage entre les classes abstaites de chaque entité et la classe Entity, car elle permet de suivre le LSP. </li>
+        <li>Nous avons gardé l'héritage entre les classes abstraites de chaque entité et la classe Entity, car elle permet de suivre le LSP. </li>
     </ul>
 
     <h4>État</h4>
@@ -102,8 +102,54 @@
     variantes des sièges (ex: logique de réservation). </li>
     </ul>
 
+    <h4>Observeur</h4>
+    <ul>
+        <li>Nous avons choisi d'utiliser le patron de conception Observeur avec notre modele MVC. C'est a dire que nous avons
+            choisi notre sujet (le modèle) et nos observateurs (les vues admin et client) pour que les vues soient
+            notifiées lorsque le modèle change d'état. Ceci nous permet de garder le modèle et les vues
+            decouplés. </li>
+        </li>
+    </ul>
+
+    <h4>Commande</h4>
+    <ul>
+        <li>Nous avons utilisé le patron de conception Commande pour que les vues puissent envoyer des commandes au modèle a travers les controleurs.
+            Ceci nous permet de garder le modèle et les vues decouplés et de ne pas avoir de dépendance entre les vues et le modèle mais
+            garder les vues synchronisées avec le modèle.</li>
+    </ul>
+
+
 
     <h3>Diagrammes de séquence / collaboration </h3>
+    <h4>Fabrique</h4>
+    <p>
+
+    </p>
+
+    <h4>Singleton</h4>
+    <p>
+
+    </p>
+
+    <h4>Etat</h4>
+    <p>
+
+    </p>
+
+    <h4>Observeur & Commande</h4>
+    <p>
+        Nous avons choisi d'utiliser le patron de conception Observeur avec notre modele MVC. C'est a dire que nous avons
+        choisi notre sujet (le modèle) et nos observateurs (les vues admin et client) pour que les vues soient
+        notifiées lorsque le modèle change d'état. De plus, dans notre diagramme de séquence, nous avons egalement
+        utilisé le patron de conception Commande pour que les vues puissent envoyer des commandes au modèle a travers les controleurs.
+        Ceci nous permet de garder le modèle et les vues decouplés et de ne pas avoir de dépendance entre les vues et le modèle mais
+        garder les vues synchronisées avec le modèle.
+    </p>
+
+    <h4>Visiteur</h4>
+    <p>
+
+    </p>
 
     <h2>Tâche 2 - Patrons de conception de notre choix </h2>
 
@@ -115,7 +161,7 @@
 
 
 
-    
+
 <br>
 <br>
 Merci!
