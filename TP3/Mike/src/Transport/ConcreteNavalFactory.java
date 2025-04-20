@@ -23,7 +23,7 @@ public class ConcreteNavalFactory extends AbstractEntityFactory {
 	}
 
 	@Override
-	public ModeTransport createModeTransport(String s, String m, String n, String id) {
+	public ModeTransport createModeTransport(String s, String m, String id) {
 		return null;
 	}
 

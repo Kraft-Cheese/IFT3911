@@ -19,7 +19,7 @@ public abstract class AbstractEntityFactory {
 	 * @param n
 	 * @param id
 	 */
-	public abstract ModeTransport createModeTransport(String s, String m, String n, String id);
+	public abstract ModeTransport createModeTransport(String s, String m, String id);
 
 	/**
 	 * 
