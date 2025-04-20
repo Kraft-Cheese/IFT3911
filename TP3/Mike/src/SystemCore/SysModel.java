@@ -71,7 +71,7 @@ public class SysModel {
 	 * 
 	 * @param uid
 	 */
-	public void newReservation(String section, String parcoursId, String place, LocalDateTime date, float total) {
+	public void newReservation(Section section, String parcoursId, Place place, LocalDateTime date, float total) {
 //		 TODO - implement sysModel.newReservation
 		Reservation reservation = new Reservation(
 				section,
