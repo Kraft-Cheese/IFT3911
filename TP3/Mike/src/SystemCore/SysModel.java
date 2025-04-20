@@ -139,40 +139,45 @@ public class SysModel {
 		Cie cie;
 		ModeTransport mode;
 
-		String[] hubsStr = elems[1].split("|");
+		String[] hubsStr = elems[1].split("[|]");
 		for (String str : hubsStr)
 		{
 			Hub hub = addHub(str, factory);
 			hubs.add(hub);
-			//all_hubs.add() IMPLEMENTER ITERATOR
 		}
 
 		cie = addCie(elems[2], factory);
-		//all_cies.add()
 
 		List<String> modeInfo = Arrays.asList(elems[6], elems[7], elems[8]);
 		mode = addMode((ArrayList<String>) modeInfo, factory);
-		//all_modes.add();
 
-		return factory.createParcours(hubs, mode, cie, elems[3], elems[4], elems[5]);
+		Parcours parcours = factory.createParcours(hubs, mode, cie, elems[3], elems[4], elems[5]);
+		//all_parcours.add(parcours)
+		return parcours;
 	}
 
 	public ModeTransport addMode(ArrayList<String> s, AbstractEntityFactory factory)
 	{
-		return factory.createModeTransport(s.get(0), s.get(1), s.get(2));
+		ModeTransport mode = factory.createModeTransport(s.get(0), s.get(1), s.get(2));
+		//all_modes.add(mode);
+		return mode;
 	}
 
 	public Hub addHub(String h, AbstractEntityFactory factory)
 	{
-		return factory.createHub("Ville", h);
+		Hub hub = factory.createHub("Ville", h);
+		//all_hubs.add(hub) IMPLEMENTER ITERATOR
+		return hub;
 	}
 
 	// paramètre : nomDeLaCompagnie|shortId
 	// ex : AIRCAN|AC
 	public Cie addCie(String c, AbstractEntityFactory factory)
 	{
-		String[] cieIds = c.split("|");
-		return factory.createCie(cieIds[0], cieIds[1]);
+		String[] cieIds = c.split("[|]");
+		Cie cie = factory.createCie(cieIds[0], cieIds[1]);
+		//all_cies.add(cie)
+		return cie;
 	}
 
 

@@ -1,11 +1,9 @@
 package Transport;
 
-public abstract class Hub extends Entity {
+import Application.Entity;
 
-	public Hub(String nom, String ville) {
-		super(nom);
-		this.Ville = ville;
-	}
+
+public abstract class Hub extends Entity{
 
 	public String getVille() {
 		return Ville;
@@ -20,6 +18,12 @@ public abstract class Hub extends Entity {
 		v.visit(this);
 	}
 
-	protected String Ville;
+	protected String ville;
+
+	protected Hub(String ville, String ID)
+	{
+		this.ville = ville;
+		this.ID = ID;
+	}
 
 }
