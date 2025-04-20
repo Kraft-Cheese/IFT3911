@@ -77,4 +77,10 @@ public class CustView extends View {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public void updateView() {
+		// Update the view with the latest data
+		// TODO - implement SystemView.AdminView.updateView
+	}
+
 }

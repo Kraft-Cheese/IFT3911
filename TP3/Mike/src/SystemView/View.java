@@ -1,15 +1,21 @@
 package SystemView;
+import SystemCore.SysModel;
 
 public abstract class View {
 
-	public void updateView() {
-		// TODO - implement SystemView.View.updateView
-		throw new UnsupportedOperationException();
+	protected final SysModel model;
+
+	public View(SysModel m){
+		this.model = m;
+		attach();
 	}
+	public abstract void updateView();
 
 	public void attach() {
-		// TODO - implement SystemView.View.attach
-		throw new UnsupportedOperationException();
+		model.addObserver(this);
 	}
 
+	public void detach() {
+		model.removeObserver(this);
+	}
 }

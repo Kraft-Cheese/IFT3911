@@ -1,5 +1,7 @@
 package SystemCore;
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 import Transport.Section;
 import Transport.Place;
 
@@ -13,14 +15,31 @@ public class Reservation {
 	private LocalDateTime date;
 	private float total;
 
-	public boolean setValid() {
+	public Reservation(Section section, String parcoursId, Place place, LocalDateTime date, float total) {
+		this.section = section;
+		this.parcoursId = parcoursId;
+		this.place = place;
+		this.date = date;
+		this.total = total;
+		genererId();
+	}
+
+	public void setStatus(boolean statut) {
 		// TODO - implement Reservation.setValid
-		throw new UnsupportedOperationException();
+		this.statut = statut;
+	}
+
+	public boolean getStatut() {
+		return statut;
 	}
 
 	private void genererId() {
 		// TODO - implement Reservation.genererId
-		throw new UnsupportedOperationException();
+		 reservationNo = UUID.randomUUID().toString();
+	}
+
+	public String getReservationId() {
+		return reservationNo;
 	}
 
 }

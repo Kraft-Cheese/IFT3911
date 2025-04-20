@@ -1,8 +1,11 @@
 package SystemCore;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
+import java.util.*;
 import Transport.*;
+
+import SystemView.View;
 
 public class SysModel {
 
@@ -16,7 +19,7 @@ public class SysModel {
 	private AbstractEntityFactory aerialFactory;
 	private AbstractEntityFactory railwayFactory;
 
-//	private final List<View> observers;
+	private final List<View> observers = new ArrayList<>();
 
 	public SysModel(
 			AbstractEntityFactory navalFactory,
@@ -33,8 +36,6 @@ public class SysModel {
 		this.all_modes = new ModesCollection();
 		this.all_cies = new CiesCollection();
 		this.all_hubs = new HubsCollection();
-
-//		this.observers = new ArrayList<>();
 	}
 
 	/**
@@ -43,12 +44,13 @@ public class SysModel {
 	 */
 	public boolean checkReservation(String reservation_no) {
 		// TODO - implement sysModel.checkReservation
-		throw new UnsupportedOperationException();
+		//return if the resrvation in the list of active reservations
+		return reservations_actives.stream().anyMatch(r -> r.getReservationId().equals(reservation_no));
 	}
 
 	private void sendConfirmation() {
-		// TODO - implement sysModel.sendConfirmation
-		throw new UnsupportedOperationException();
+		// TODO - implement sysModel.sendConfirmation correctly
+		System.out.println("Confirmation sent");
 	}
 
 	/**
@@ -69,12 +71,17 @@ public class SysModel {
 	 * 
 	 * @param uid
 	 */
-	public void newReservation(String uid) {
-		// TODO - implement sysModel.newReservation
-//		Reservation reservation = new Reservation(uid);
-//		reservations_actives.add(reservation);
-//		notifyEntity();
-		throw new UnsupportedOperationException();
+	public void newReservation(Section section, String parcoursId, Place place, LocalDateTime date, float total) {
+//		 TODO - implement sysModel.newReservation
+		Reservation reservation = new Reservation(
+				section,
+				parcoursId,
+				place,
+				date,
+				total
+		);
+		reservations_actives.add(reservation);
+		notifyEntity();
 	}
 
 	public boolean readDB() {
@@ -123,12 +130,19 @@ public class SysModel {
 		throw new UnsupportedOperationException();
 	}
 
+	public void addObserver(View obs) {
+		observers.add(obs);
+	}
+
+	public void removeObserver(View obs) {
+		observers.remove(obs);
+	}
+
 	public void notifyEntity() {
 		// TODO - implement sysModel.notify
-//		for (View obs : observers) {
-//			obs.update();
-//		}
-		throw new UnsupportedOperationException();
+		for (View obs : observers) {
+			obs.updateView();
+		}
 	}
 
 }
