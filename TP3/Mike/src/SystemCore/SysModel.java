@@ -1,8 +1,10 @@
 package SystemCore;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
+import java.util.*;
 import Transport.*;
+
+import SystemView.View;
 
 public class SysModel {
 
@@ -11,10 +13,29 @@ public class SysModel {
 	private ModesCollection all_modes;
 	private CiesCollection all_cies;
 	private HubsCollection all_hubs;
-	private boolean currUserRole;
+	private boolean currUserRole; // true = admin, false = client
 	private AbstractEntityFactory navalFactory;
 	private AbstractEntityFactory aerialFactory;
 	private AbstractEntityFactory railwayFactory;
+
+	private final List<View> observers = new ArrayList<>();
+
+	public SysModel(
+			AbstractEntityFactory navalFactory,
+			AbstractEntityFactory aerialFactory,
+			AbstractEntityFactory railwayFactory
+	){
+		this.navalFactory = navalFactory;
+		this.aerialFactory = aerialFactory;
+		this.railwayFactory = railwayFactory;
+
+		//Init the collections
+		this.reservations_actives = new ArrayList<>();
+		this.all_parcours = new ParcoursCollection();
+		this.all_modes = new ModesCollection();
+		this.all_cies = new CiesCollection();
+		this.all_hubs = new HubsCollection();
+	}
 
 	/**
 	 * 
@@ -39,6 +60,8 @@ public class SysModel {
 	 */
 	public ArrayList<Parcours> resultatsSearch(String origine, String destination, LocalDate date, ModeTransport mode) {
 		// TODO - implement sysModel.resultatsSearch
+		// reservations_actives will be a list of all the reservations that are active
+		//		return reservations_actives.stream().anyMatch(r -> r.getReservationId().equals(reservation_no));
 		throw new UnsupportedOperationException();
 	}
 
@@ -48,6 +71,9 @@ public class SysModel {
 	 */
 	public void newReservation(String uid) {
 		// TODO - implement sysModel.newReservation
+//		Reservation reservation = new Reservation(uid);
+//		reservations_actives.add(reservation);
+//		notifyEntity();
 		throw new UnsupportedOperationException();
 	}
 
@@ -97,9 +123,19 @@ public class SysModel {
 		throw new UnsupportedOperationException();
 	}
 
+	public void addObserver(View obs) {
+		observers.add(obs);
+	}
+
+	public void removeObserver(View obs) {
+		observers.remove(obs);
+	}
+
 	public void notifyEntity() {
 		// TODO - implement sysModel.notify
-		throw new UnsupportedOperationException();
+		for (View obs : observers) {
+			obs.updateView();
+		}
 	}
 
 }
