@@ -17,7 +17,7 @@ public abstract class ModeTransport extends Entity {
 	}
 
 	// TODO
-	private ArrayList<Section> parseSections(String str)
+	/*private ArrayList<Section> parseSections(String str)
 	{
 		// PS(0/12)474.00|AM(5/16)355.50|EL(150/200)237.00
 
@@ -28,5 +28,5 @@ public abstract class ModeTransport extends Entity {
 			//Section section = new Section(elems[2], elems[0].charAt(0),
 			// elems[0].length() == 2 ? elems[0].charAt(1) : null, Float.parseFloat(elems[3]), )
 		}
-	}
+	}*/
 }
