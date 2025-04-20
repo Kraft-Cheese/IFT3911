@@ -1,8 +1,10 @@
 package SystemCore;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
+import java.util.*;
 import Transport.*;
+
+import SystemView.View;
 
 public class SysModel {
 
@@ -16,7 +18,7 @@ public class SysModel {
 	private AbstractEntityFactory aerialFactory;
 	private AbstractEntityFactory railwayFactory;
 
-//	private final List<View> observers;
+	private final List<View> observers = new ArrayList<>();
 
 	public SysModel(
 			AbstractEntityFactory navalFactory,
@@ -33,8 +35,6 @@ public class SysModel {
 		this.all_modes = new ModesCollection();
 		this.all_cies = new CiesCollection();
 		this.all_hubs = new HubsCollection();
-
-//		this.observers = new ArrayList<>();
 	}
 
 	/**
@@ -123,12 +123,19 @@ public class SysModel {
 		throw new UnsupportedOperationException();
 	}
 
+	public void addObserver(View obs) {
+		observers.add(obs);
+	}
+
+	public void removeObserver(View obs) {
+		observers.remove(obs);
+	}
+
 	public void notifyEntity() {
 		// TODO - implement sysModel.notify
-//		for (View obs : observers) {
-//			obs.update();
-//		}
-		throw new UnsupportedOperationException();
+		for (View obs : observers) {
+			obs.updateView();
+		}
 	}
 
 }
