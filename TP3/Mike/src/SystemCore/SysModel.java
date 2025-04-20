@@ -1,4 +1,5 @@
 package SystemCore;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.*;
@@ -43,12 +44,13 @@ public class SysModel {
 	 */
 	public boolean checkReservation(String reservation_no) {
 		// TODO - implement sysModel.checkReservation
-		throw new UnsupportedOperationException();
+		//return if the resrvation in the list of active reservations
+		return reservations_actives.stream().anyMatch(r -> r.getReservationId().equals(reservation_no));
 	}
 
 	private void sendConfirmation() {
-		// TODO - implement sysModel.sendConfirmation
-		throw new UnsupportedOperationException();
+		// TODO - implement sysModel.sendConfirmation correctly
+		System.out.println("Confirmation sent");
 	}
 
 	/**
@@ -69,12 +71,17 @@ public class SysModel {
 	 * 
 	 * @param uid
 	 */
-	public void newReservation(String uid) {
-		// TODO - implement sysModel.newReservation
-//		Reservation reservation = new Reservation(uid);
-//		reservations_actives.add(reservation);
-//		notifyEntity();
-		throw new UnsupportedOperationException();
+	public void newReservation(String section, String parcoursId, String place, LocalDateTime date, float total) {
+//		 TODO - implement sysModel.newReservation
+		Reservation reservation = new Reservation(
+				section,
+				parcoursId,
+				place,
+				date,
+				total
+		);
+		reservations_actives.add(reservation);
+		notifyEntity();
 	}
 
 	public boolean readDB() {
