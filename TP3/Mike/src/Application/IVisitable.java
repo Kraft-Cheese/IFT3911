@@ -6,6 +6,6 @@ public interface IVisitable {
 	 * 
 	 * @param v
 	 */
-	String accept(Visitor v);
+	void accept(Visitor v);
 
 }

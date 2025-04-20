@@ -28,7 +28,7 @@ public class ConcreteAdminVisitor implements Visitor {
 					section.getOccupation(),
 					section.getCapacite(),
 					section.getPrix()
-					);
+			);
 		}
 		return entityString;
 	}

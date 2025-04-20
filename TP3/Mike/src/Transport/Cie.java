@@ -1,6 +1,7 @@
 package Transport;
 
 import Application.Entity;
+import Application.Visitor;
 
 public abstract class Cie extends Entity {
 
@@ -10,6 +11,11 @@ public abstract class Cie extends Entity {
 	{
 		this.ID = ID;
 		this.shortId = shortID;
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visit(this);
 	}
 
 }
