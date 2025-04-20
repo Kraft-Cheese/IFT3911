@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class ConcreteRailwayFactory extends AbstractEntityFactory {
 
-	private static ConcreteRailwayFactory instance = new ConcreteRailwayFactory();
+	private static ConcreteRailwayFactory instance = null;
 
-	public static ConcreteRailwayFactory getInstance() {
+	public static ConcreteRailwayFactory getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new ConcreteRailwayFactory();
+		}
 		return instance;
 	}
 
-	private ConcreteRailwayFactory() {
-		// TODO - implement Transport.ConcreteRailwayFactory.Transport.ConcreteRailwayFactory
-		throw new UnsupportedOperationException();
-	}
+	private ConcreteRailwayFactory() { }
 
 	@Override
 	public Hub createHub(String v, String id) {
@@ -21,7 +23,7 @@ public class ConcreteRailwayFactory extends AbstractEntityFactory {
 	}
 
 	@Override
-	public ModeTransport createModeTransport(String s, String m, String n, String id) {
+	public ModeTransport createModeTransport(String s, String m, String id) {
 		return null;
 	}
 

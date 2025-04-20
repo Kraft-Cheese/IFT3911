@@ -1,6 +1,9 @@
 package Transport;
 
+import Application.CollectionIterator;
 import Application.IterableCollection;
+import Application.Iterator;
+
 import java.util.ArrayList;
 
 public class ParcoursCollection implements IterableCollection {
@@ -8,7 +11,7 @@ public class ParcoursCollection implements IterableCollection {
 	private ArrayList<Parcours> parcoursList;
 
 	@Override
-	public void createIterator() {
-
+	public Iterator createIterator() {
+		return new CollectionIterator();
 	}
 }

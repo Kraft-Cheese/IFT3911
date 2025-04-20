@@ -8,6 +8,5 @@ public abstract class ModeTransport extends Entity {
 
 	protected ArrayList<String> Sections;
 	protected String Modele;
-	protected int No_série;
 
 }
