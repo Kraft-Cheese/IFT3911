@@ -22,6 +22,8 @@ public class Main {
         test.add(b);
         DATABASE.writeCSV(test);
         */
+
+
     }
 
     // private static Database DATABASE = new Database();

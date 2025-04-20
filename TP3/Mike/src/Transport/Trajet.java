@@ -11,6 +11,6 @@ public class Trajet extends Parcours {
 
 	@Override
 	public void accept(Visitor v) {
-
+		v.visit(this);
 	}
 }

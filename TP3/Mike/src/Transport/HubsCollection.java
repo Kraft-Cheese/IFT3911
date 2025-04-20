@@ -11,7 +11,7 @@ public class HubsCollection implements IterableCollection {
 	private ArrayList<Hub> hubsList;
 
 	@Override
-	public Iterator createIterator() {
-		return new CollectionIterator();
+	public CollectionIterator createIterator() {
+		return new CollectionIterator(hubsList);
 	}
 }

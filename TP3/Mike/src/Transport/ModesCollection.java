@@ -11,7 +11,7 @@ public class ModesCollection implements IterableCollection {
 	private ArrayList<ModeTransport> modesList;
 
 	@Override
-	public Iterator createIterator() {
-		return new CollectionIterator();
+	public CollectionIterator createIterator() {
+		return new CollectionIterator(modesList);
 	}
 }

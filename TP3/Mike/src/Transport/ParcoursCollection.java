@@ -11,7 +11,7 @@ public class ParcoursCollection implements IterableCollection {
 	private ArrayList<Parcours> parcoursList;
 
 	@Override
-	public Iterator createIterator() {
-		return new CollectionIterator();
+	public CollectionIterator createIterator() {
+		return new CollectionIterator(parcoursList);
 	}
 }

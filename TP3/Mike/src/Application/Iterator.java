@@ -1,11 +1,8 @@
 package Application;
 
+// iterator interface
 public interface Iterator {
 
-	/**
-	 * 
-	 * @param e
-	 */
 	void add(Entity e);
 
 	void next();
@@ -14,10 +11,6 @@ public interface Iterator {
 
 	Entity getCurrent();
 
-	/**
-	 * 
-	 * @param e
-	 */
 	void remove(Entity e);
 
 	void first();

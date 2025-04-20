@@ -98,7 +98,7 @@
             Ici, les familles sont les 3 types de voyages que l'on peut faire (vol, train, bateau), puis leurs moyens de transport, hubs et companies associés.
         </li>
         <li>C'est une conception utile dans le cas où on voudrait ajouter un nouveau type d'entité de transport, car il suffirait d'ajouter
-            une fabrique concrète.</li>
+            une fabrique concrète et ses classes correspondantes.</li>
         <li>Nous avons gardé l'héritage entre les classes abstraites de chaque entité et la classe Entity, car elle permet de suivre le LSP. </li>
     </ul>
 
@@ -108,7 +108,8 @@
             ces dernières ne peuvent qu'être instanciées une seule fois.
         </li>
         <li>
-            Elles seront instanciées à l'initialisation du programme et stockées dans <code>SysModel</code>. 
+            Elles seront instanciées à l'initialisation du programme et stockées dans <code>SysModel</code>, qui pourra les appeler pour 
+            instancier les entités. 
         </li>
     </ul>
 
@@ -124,7 +125,7 @@
     <ul>
         <li>Nous avons choisi d'utiliser le patron de conception Observateur avec notre modele MVC. C'est a dire que nous avons
             choisi notre sujet (le modèle) et nos observateurs (les vues admin et client) pour que les vues soient
-            notifiées lorsque le modèle change d'état. Ceci nous permet de garder le modèle et les vues
+            notifiées lorsque le modèle change d'état (ex: afficher des résultats de recherche). Ceci nous permet de garder le modèle et les vues
             decouplés. </li>
         </li>
     </ul>
@@ -145,11 +146,14 @@
     <ul>
         <li>
             Nous avons utilisé le patron de Visiteur pour construire les deux <i>Strings</i> qui représentent un parcours. Puisque l'affichage est différent pour un Client
-            et un Admin, nous avons créé deux classes concrètes qui implémentent l'interface <code>Visitor</code>, qui permettent de construire progressivement ledit <i>String</i>.=
+            et un Admin, nous avons créé deux classes concrètes qui implémentent l'interface <code>Visitor</code>, qui permettent de construire progressivement ledit <i>String</i>.
         </li>
         <li>Chaque visiteur appelle, une après l'autre, une méthode pour visiter un <code>Hub</code>, <code>ModeTransport</code>, <code>Parcours</code> et <code>Compagnie</code></li>
-        REVOIR FONCTIONNEMENT DE VISITOR ET LES ACCEPT (RECURSIFS?????)
-    </ul>
+        <li>Les entités concrètes implémentent l'interface visitable, qui leur offre la méthode <code>accept(visitor)</code> ; elles peuvent ainsi appeler la méthode <code>visit(this)</code> d'un
+        visiteur concret donné (ici, nous avons un visiteur pour le client et un pour l'admin). Selon le type de <code>this</code>, le visiteur concret construira le String, puisqu'il a maintenant accès
+    à une instance de l'entité. </li>
+
+</ul>
 
 
 

@@ -22,4 +22,19 @@ public abstract class Parcours extends Entity {
 		throw new UnsupportedOperationException();
 	}
 
+	public LocalDateTime getDepart() {
+		return Date_arrivee;
+	}
+
+	public LocalDateTime getArrivee() {
+		return Date_depart;
+	}
+
+	public Cie getCompagnie() {
+		return compagnie;
+	}
+
+	public ArrayList<Hub> getHubs() {
+		return hubs;
+	}
 }

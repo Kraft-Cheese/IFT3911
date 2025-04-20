@@ -11,44 +11,53 @@ public class ConcreteAdminVisitor implements Visitor {
 
 	@Override
 	public String visit(Hub hub) {
-		// Hub: CODE + City
-//		entityString = String.format("%s + %s",
-//				hub.getCode(),
-//				hub.getCity());
-//		return entityString;
-				return null;
+		// Hub: CODE
+		entityString = hub.getID();
+		return entityString;
 	}
 
 	@Override
 	public String visit(ModeTransport modeTransport) {
-		// ModeTransport: CODE + TYPE["N", "A", "R"]
-//		entityString = String.format("%s + %s",
-//				modeTransport.getCode(),
-//				modeTransport.getType());
-//		return entityString;
-				return null;
+
+		// get le nom de chaque section du mode de transport
+		ArrayList<Section> sections = modeTransport.getSections();
+
+		for (Section section : sections) {
+			// get le nom de chaque section du mode de transport
+			entityString = String.format("|%s(%s/%s)%s,
+					section.getType(),
+					section.getOccupation(),
+					section.getCapacite(),
+					section.getPrix()
+					);
+		}
+		return entityString;
 	}
 
 	@Override
 	public String visit(Parcours parcours) {
-		// Origin + Desination + Date + Mode
-//		entityString = String.format("%s + %s + %s + %s",
-//				parcours.getOrigin(),
-//				parcours.getDestination(),
-//				parcours.getDate(),
-//				parcours.getMode());
-//		return entityString;
-				return null;
+
+		// second part of the string, for as many sections as there are in the mode transport, build the string
+		entityString = String.format("%s-%s:[%s]%s",
+				parcours.getDepart(),
+				parcours.getDestination(),
+				visit(parcours.getCie()),
+				parcours.getID()
+				);
+
+		String mode_info = "";
+		// visiter le mode de transport pour obtenir son info
+		mode_info = visit(parcours.getMode);
+		entityString += mode_info;
+
+		return entityString;
 	}
 
 	@Override
 	public String visit(Cie cie) {
 		// Cie: CODE + NAME + TYPE["N", "A", "R"]
-//		entityString = String.format("%s + %s + %s",
-//				cie.getCode(),
-//				cie.getName(),
-//				cie.getType());
-//		return entityString;
-				return null;
+		entityString = cie.getId();
+
+		return entityString;
 	}
 }

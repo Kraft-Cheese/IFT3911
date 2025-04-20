@@ -33,6 +33,7 @@ public class CustView extends View {
 	 */
 	public void affResRecherche(ArrayList<Parcours> liste) {
 		// TODO - implement SystemView.CustView.affResRecherche
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -79,8 +80,11 @@ public class CustView extends View {
 
 	@Override
 	public void updateView() {
-		// Update the view with the latest data
+		// for now uses the current search results
 		// TODO - implement SystemView.AdminView.updateView
+		SysModel sysModel = SysModel.getInstance();
+		this.searchResults = sysModel.getCurrSearchResults();
+
 	}
 
 }

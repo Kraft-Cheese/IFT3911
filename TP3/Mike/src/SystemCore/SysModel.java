@@ -1,5 +1,4 @@
 package SystemCore;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.time.LocalDate;
@@ -7,6 +6,7 @@ import java.util.*;
 
 import Database.Database;
 import Transport.*;
+
 import SystemView.View;
 
 public class SysModel {
@@ -45,6 +45,14 @@ public class SysModel {
 		}
 	}
 
+	public ArrayList<Parcours> getCurrSearchResults() {
+		return currSearchResults;
+	}
+
+	/**
+	 * 
+	 * @param reservation_no
+	 */
 	public boolean checkReservation(String reservation_no) {
 		// TODO - implement sysModel.checkReservation
 		//return if the reservation in the list of active reservations
@@ -60,7 +68,23 @@ public class SysModel {
 		// TODO - implement sysModel.resultatsSearch
 		// reservations_actives will be a list of all the reservations that are active
 		//		return reservations_actives.stream().anyMatch(r -> r.getReservationId().equals(reservation_no));
-		throw new UnsupportedOperationException();
+		// throw new UnsupportedOperationException();
+
+		// regarder à travers all_parcours pour voir si on trouve un parcours qui correspond à l'origine, destination, mode de transport
+		CollectionIterator it = all_parcours.createIterator();
+		ArrayList<Parcours> resultats = new ArrayList<>();
+
+		while (it.hasNext()) {
+			Parcours parcours = (Parcours) it.next();
+			if (parcours.getOrigine().equals(origine) && parcours.getDestination().equals(destination) && parcours.getMode().equals(mode)) {
+				resultats.add(parcours);
+			}
+		}
+
+		this.currSearchResults = resultats;
+		notifyEntity();
+
+		return resultats;
 	}
 
 
@@ -150,6 +174,7 @@ public class SysModel {
 		String[] cieIds = c.split("|");
 		return factory.createCie(cieIds[0], cieIds[1]);
 	}
+
 
 	public void addObserver(View obs) {
 		observers.add(obs);
