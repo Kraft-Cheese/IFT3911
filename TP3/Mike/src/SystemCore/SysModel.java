@@ -21,14 +21,11 @@ public class SysModel {
 
 	private final List<View> observers = new ArrayList<>();
 
-	public SysModel(
-			AbstractEntityFactory navalFactory,
-			AbstractEntityFactory aerialFactory,
-			AbstractEntityFactory railwayFactory
-	){
-		this.navalFactory = navalFactory;
-		this.aerialFactory = aerialFactory;
-		this.railwayFactory = railwayFactory;
+	public SysModel()
+	{
+		this.navalFactory = ConcreteNavalFactory.getInstance();
+		this.aerialFactory = ConcreteAerialFactory.getInstance();
+		this.railwayFactory = ConcreteRailwayFactory.getInstance();
 
 		//Init the collections
 		this.reservations_actives = new ArrayList<>();
