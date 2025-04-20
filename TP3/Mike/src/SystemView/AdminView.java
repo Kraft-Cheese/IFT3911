@@ -43,7 +43,7 @@ public class AdminView extends View {
 		// Display the updated search results
 		// use visitor to construct the string
 		ConcreteAdminVisitor visitor = new ConcreteAdminVisitor();
-		String results = ""
+		String results = "";
 		for (Parcours parcours : searchResults) {
 			System.out.println(parcours.accept(visitor)+"\n");
 		}
