@@ -1,5 +1,7 @@
 package Application;
 
+import java.util.ArrayList;
+
 // concrete iterator class (collection here is always an arraylist)
 public class CollectionIterator implements Iterator {
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public abstract class ModeTransport extends Entity {
 
-	protected ArrayList<String> sections;
+	protected ArrayList<Section> sections;
 	protected String modele;
 
 	public ModeTransport(String sections, String modele, String ID)
@@ -29,4 +29,8 @@ public abstract class ModeTransport extends Entity {
 			// elems[0].length() == 2 ? elems[0].charAt(1) : null, Float.parseFloat(elems[3]), )
 		}
 	}*/
+
+	public ArrayList<Section> getSections() {
+		return sections;
+	}
 }
