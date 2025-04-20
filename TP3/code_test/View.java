@@ -5,4 +5,9 @@ public abstract class View {
 		throw new UnsupportedOperationException();
 	}
 
+	public void attach() {
+		// TODO - implement View.attach
+		throw new UnsupportedOperationException();
+	}
+
 }
