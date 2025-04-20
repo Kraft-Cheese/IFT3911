@@ -2,6 +2,6 @@ package Application;
 
 public interface IterableCollection {
 
-	void createIterator();
+	public Iterator createIterator();
 
 }
