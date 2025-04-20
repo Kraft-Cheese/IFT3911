@@ -2,10 +2,15 @@ package SystemView;
 
 import Application.Entity;
 import SystemCore.Reservation;
+import SystemCore.SysModel;
 import Transport.Parcours;
 import java.util.ArrayList;
 
 public class CustView extends View {
+
+	public CustView(SysModel m) {
+		super(m);
+	}
 
 	public void goBack() {
 		// TODO - implement SystemView.CustView.goBack
