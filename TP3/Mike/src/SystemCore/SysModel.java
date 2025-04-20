@@ -11,10 +11,31 @@ public class SysModel {
 	private ModesCollection all_modes;
 	private CiesCollection all_cies;
 	private HubsCollection all_hubs;
-	private boolean currUserRole;
+	private boolean currUserRole; // true = admin, false = client
 	private AbstractEntityFactory navalFactory;
 	private AbstractEntityFactory aerialFactory;
 	private AbstractEntityFactory railwayFactory;
+
+//	private final List<View> observers;
+
+	public SysModel(
+			AbstractEntityFactory navalFactory,
+			AbstractEntityFactory aerialFactory,
+			AbstractEntityFactory railwayFactory
+	){
+		this.navalFactory = navalFactory;
+		this.aerialFactory = aerialFactory;
+		this.railwayFactory = railwayFactory;
+
+		//Init the collections
+		this.reservations_actives = new ArrayList<>();
+		this.all_parcours = new ParcoursCollection();
+		this.all_modes = new ModesCollection();
+		this.all_cies = new CiesCollection();
+		this.all_hubs = new HubsCollection();
+
+//		this.observers = new ArrayList<>();
+	}
 
 	/**
 	 * 
@@ -39,6 +60,8 @@ public class SysModel {
 	 */
 	public ArrayList<Parcours> resultatsSearch(String origine, String destination, LocalDate date, ModeTransport mode) {
 		// TODO - implement sysModel.resultatsSearch
+		// reservations_actives will be a list of all the reservations that are active
+		//		return reservations_actives.stream().anyMatch(r -> r.getReservationId().equals(reservation_no));
 		throw new UnsupportedOperationException();
 	}
 
@@ -48,6 +71,9 @@ public class SysModel {
 	 */
 	public void newReservation(String uid) {
 		// TODO - implement sysModel.newReservation
+//		Reservation reservation = new Reservation(uid);
+//		reservations_actives.add(reservation);
+//		notifyEntity();
 		throw new UnsupportedOperationException();
 	}
 
@@ -99,6 +125,9 @@ public class SysModel {
 
 	public void notifyEntity() {
 		// TODO - implement sysModel.notify
+//		for (View obs : observers) {
+//			obs.update();
+//		}
 		throw new UnsupportedOperationException();
 	}
 

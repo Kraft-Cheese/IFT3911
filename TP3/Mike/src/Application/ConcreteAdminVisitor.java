@@ -7,25 +7,48 @@ import Transport.Parcours;
 
 public class ConcreteAdminVisitor implements Visitor {
 
-	private int entityString;
+	private String entityString;
 
 	@Override
 	public String visit(Hub hub) {
-		return null;
+		// Hub: CODE + City
+//		entityString = String.format("%s + %s",
+//				hub.getCode(),
+//				hub.getCity());
+//		return entityString;
+				return null;
 	}
 
 	@Override
 	public String visit(ModeTransport modeTransport) {
-		return null;
+		// ModeTransport: CODE + TYPE["N", "A", "R"]
+//		entityString = String.format("%s + %s",
+//				modeTransport.getCode(),
+//				modeTransport.getType());
+//		return entityString;
+				return null;
 	}
 
 	@Override
 	public String visit(Parcours parcours) {
-		return null;
+		// Origin + Desination + Date + Mode
+//		entityString = String.format("%s + %s + %s + %s",
+//				parcours.getOrigin(),
+//				parcours.getDestination(),
+//				parcours.getDate(),
+//				parcours.getMode());
+//		return entityString;
+				return null;
 	}
 
 	@Override
 	public String visit(Cie cie) {
-		return null;
+		// Cie: CODE + NAME + TYPE["N", "A", "R"]
+//		entityString = String.format("%s + %s + %s",
+//				cie.getCode(),
+//				cie.getName(),
+//				cie.getType());
+//		return entityString;
+				return null;
 	}
 }
