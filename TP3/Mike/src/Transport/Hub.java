@@ -1,16 +1,16 @@
 package Transport;
 
 import Application.Entity;
-
+import Application.Visitor;
 
 public abstract class Hub extends Entity{
 
 	public String getVille() {
-		return Ville;
+		return this.ville;
 	}
 
 	public void setVille(String ville) {
-		Ville = ville;
+		this.ville = ville;
 	}
 
 	@Override

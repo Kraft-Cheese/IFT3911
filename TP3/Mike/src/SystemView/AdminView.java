@@ -1,6 +1,12 @@
 package SystemView;
 
+import SystemCore.SysModel;
+
 public class AdminView extends View {
+
+	public AdminView(SysModel m) {
+		super(m);
+	}
 
 	public void adminInput() {
 		// TODO - implement SystemView.AdminView.adminInput

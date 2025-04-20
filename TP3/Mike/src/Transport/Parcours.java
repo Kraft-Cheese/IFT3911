@@ -45,11 +45,26 @@ public abstract class Parcours extends Entity {
 	}
 
 	public LocalDateTime getDepart() {
-		return Date_arrivee;
+		return this.date_depart;
+	}
+	public String getDepartStr() {
+		return getDateString(this.date_depart);
 	}
 
 	public LocalDateTime getArrivee() {
-		return Date_depart;
+		return this.date_arrivee;
+	}
+	public String getArriveeStr() {
+		return getDateString(this.date_arrivee);
+	}
+
+	private String getDateString(LocalDateTime date)
+	{
+		return date.getYear() + "."
+				+ date.getMonthValue() + "."
+				+ date.getDayOfMonth() + "."
+				+ date.getHour() + "."
+				+ date.getMinute();
 	}
 
 	public Cie getCompagnie() {
@@ -58,5 +73,9 @@ public abstract class Parcours extends Entity {
 
 	public ArrayList<Hub> getHubs() {
 		return hubs;
+	}
+
+	public ModeTransport getMode() {
+		return mode;
 	}
 }
