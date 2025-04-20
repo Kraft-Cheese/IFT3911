@@ -9,4 +9,13 @@ public abstract class Menu {
 		throw new UnsupportedOperationException();
 	}
 
+	public void affMenuPrincipal() {
+		// TODO - implement SystemView.Menu.affMenuPrincipal
+		System.out.println("Menu Principal");
+		System.out.println("1. Admin");
+		System.out.println("2. Customer");
+		System.out.println("3. Exit");
+		throw new UnsupportedOperationException();
+	}
+
 }

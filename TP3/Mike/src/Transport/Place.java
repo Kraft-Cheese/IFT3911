@@ -20,6 +20,19 @@ public abstract class Place {
 		this.state = state;
 	}
 
+	public IPlaceState getState() {
+		return state;
+	}
+
+	public String getRow(){
+		return String.valueOf(row);
+	}
+
+	public String getCol(){
+		return String.valueOf(col);
+	}
+
+
 	/**
 	 * 
 	 * @param state

@@ -1,6 +1,8 @@
 package Transport;
 
 import Application.Entity;
+import Application.Visitor;
+
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
@@ -32,6 +34,11 @@ public abstract class Parcours extends Entity {
 			date[i] = Integer.parseInt(dateStr[i]);
 		}
 		return LocalDateTime.of(date[0], date[1], date[2], date[3], date[4]);
+	}
+
+	@Override
+	public void accept(Visitor v) {
+		v.visit(this);
 	}
 
 	public Parcours check_available() {
