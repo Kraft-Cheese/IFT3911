@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class ConcreteNavalFactory extends AbstractEntityFactory {
 
-	private static ConcreteNavalFactory instance = new ConcreteNavalFactory();
+	private static ConcreteNavalFactory instance = null;
 
-	public static ConcreteNavalFactory getInstance() {
+	public static ConcreteNavalFactory getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new ConcreteNavalFactory();
+		}
 		return instance;
 	}
 
-	private ConcreteNavalFactory() {
-		// TODO - implement Transport.ConcreteNavalFactory.Transport.ConcreteNavalFactory
-		throw new UnsupportedOperationException();
-	}
+	private ConcreteNavalFactory() { }
 
 	@Override
 	public Hub createHub(String v, String id) {

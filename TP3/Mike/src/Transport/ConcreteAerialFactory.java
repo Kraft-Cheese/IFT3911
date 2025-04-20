@@ -4,16 +4,18 @@ import java.util.ArrayList;
 
 public class ConcreteAerialFactory extends AbstractEntityFactory {
 
-	private static ConcreteAerialFactory instance = new ConcreteAerialFactory();
+	private static ConcreteAerialFactory instance = null;
 
-	public static ConcreteAerialFactory getInstance() {
+	public static ConcreteAerialFactory getInstance()
+	{
+		if (instance == null)
+		{
+			instance = new ConcreteAerialFactory();
+		}
 		return instance;
 	}
 
-	private ConcreteAerialFactory() {
-		// TODO - implement Transport.ConcreteAerialFactory.Transport.ConcreteAerialFactory
-		throw new UnsupportedOperationException();
-	}
+	private ConcreteAerialFactory() { }
 
 	@Override
 	public Hub createHub(String v, String id) {
