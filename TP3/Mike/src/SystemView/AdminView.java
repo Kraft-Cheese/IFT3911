@@ -38,8 +38,8 @@ public class AdminView extends View {
 
 		// Update the view with the latest data
 		// TODO - implement SystemView.AdminView.updateView
-		SysModel sysModel = SysModel.getInstance();
-		ArrayList<Parcours> searchResults = sysModel.getCurrSearchResults();
+
+		ArrayList<Entity> searchResults = model.getCurrSearchResults();
 		// Display the updated search results
 		// use visitor to construct the string
 		ConcreteAdminVisitor visitor = new ConcreteAdminVisitor();

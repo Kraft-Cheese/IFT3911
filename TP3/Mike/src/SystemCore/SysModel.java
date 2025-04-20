@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.*;
 
+import Application.CollectionIterator;
 import Database.Database;
+import SystemView.AdminView;
 import Transport.*;
 
 import SystemView.View;
@@ -21,6 +23,7 @@ public class SysModel {
 	private AbstractEntityFactory aerialFactory;
 	private AbstractEntityFactory railwayFactory;
 	private static Database DATABASE = new Database();
+	private ArrayList<Parcours> currSearchResults;
 
 	private final List<View> observers = new ArrayList<>();
 
@@ -36,6 +39,8 @@ public class SysModel {
 		this.all_modes = new ModesCollection();
 		this.all_cies = new CiesCollection();
 		this.all_hubs = new HubsCollection();
+
+		// TODO: attach the 2 observers
 
 		ArrayList<String[]> parcoursCsv = DATABASE.readCSV();
 		for (String[] parcours : parcoursCsv)
@@ -74,9 +79,9 @@ public class SysModel {
 		CollectionIterator it = all_parcours.createIterator();
 		ArrayList<Parcours> resultats = new ArrayList<>();
 
-		while (it.hasNext()) {
+		while (it.next()!=null) {
 			Parcours parcours = (Parcours) it.next();
-			if (parcours.getOrigine().equals(origine) && parcours.getDestination().equals(destination) && parcours.getMode().equals(mode)) {
+			if (parcours.getDepart().equals(origine) && parcours.getArrivee().equals(destination) && parcours.getMode().equals(mode)) {
 				resultats.add(parcours);
 			}
 		}
