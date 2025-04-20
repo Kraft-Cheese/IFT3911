@@ -9,7 +9,8 @@ public abstract class View {
 		this.model = m;
 		attach();
 	}
-	public abstract void updateView();
+
+    public abstract void updateView();
 
 	public void attach() {
 		model.addObserver(this);
