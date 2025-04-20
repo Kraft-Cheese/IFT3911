@@ -19,21 +19,21 @@ public class ConcreteAerialFactory extends AbstractEntityFactory {
 
 	@Override
 	public Hub createHub(String v, String id) {
-		return null;
+		return new Aéroport(v, id);
 	}
 
 	@Override
 	public ModeTransport createModeTransport(String s, String m, String id) {
-		return null;
+		return new Avion(s, m, id);
 	}
 
 	@Override
 	public Cie createCie(String id, String shortId) {
-		return null;
+		return new Cie_aérienne(id, shortId);
 	}
 
 	@Override
 	public Parcours createParcours(ArrayList<Hub> h, ModeTransport m, Cie c, String id, String date_d, String date_a) {
-		return null;
+		return new Vol(h, m, c, id, date_d, date_a);
 	}
 }

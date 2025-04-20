@@ -1,7 +1,15 @@
 package Transport;
 
-public abstract class Hub {
+import Application.Entity;
 
-	protected String Ville;
+public abstract class Hub extends Entity {
+
+	protected String ville;
+
+	protected Hub(String ville, String ID)
+	{
+		this.ville = ville;
+		this.ID = ID;
+	}
 
 }
