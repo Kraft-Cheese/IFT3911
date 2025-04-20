@@ -1,17 +1,23 @@
 package Application;
+import java.util.ArrayList;
 
 // concrete iterator class (collection here is always an arraylist)
-public class CollectionIterator implements Iterator {
+public class CollectionIterator<T extends Entity> implements Iterator {
 
 	private int current;
 	private ArrayList<Entity> collection;
 
+	public CollectionIterator(ArrayList<T> collection) {
+		this.collection = (ArrayList<Entity>) collection;
+		this.current = -1; // start before the first element
+	}
+
 	@Override
-	public Entity add(Entity e) {
+	public void add(Entity e) {
 
 		// check if the entity is already in the collection
 		for (int i = 0; i < current; i++) {
-			if (e.equals(collection[i])) {
+			if (e.equals(collection.get(i))) {
 				throw new IllegalArgumentException("Entité existe déjà dans la collection");
 			}
 		}
@@ -33,7 +39,7 @@ public class CollectionIterator implements Iterator {
 	}
 
 	@Override
-	public void previous() {
+	public Entity previous() {
 		// check if the current index is within bounds
 		if (current > 0) {
 			current--;
@@ -61,7 +67,7 @@ public class CollectionIterator implements Iterator {
 	}
 
 	@Override
-	public void first() {
+	public Entity first() {
 		// check if the collection is not empty
 		if (collection.isEmpty()) {
 			throw new IllegalStateException("Collection is empty");
@@ -73,7 +79,7 @@ public class CollectionIterator implements Iterator {
 	}
 
 	@Override
-	public void isDone() {
+	public boolean isDone() {
 		// check if the current index is within bounds
 		if (current >= collection.size()) {
 			return true;

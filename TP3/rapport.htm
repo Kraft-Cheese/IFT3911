@@ -252,17 +252,15 @@
 
     <h2>Tâche 4 - Discussion de la conception</h2>
 
-    TODO EXEMPLES DANS LES ARGUMENTS!!!
-
     <h3>Changements et améliorations par rapport au TP2</h3>
     <p>
         En plus des patrons de conception, nous avons ajouté une classe abstraite <code>View</code>, pour éventuellement permettre plusieurs vues différentes du système. <br>
         Nous avons également sorti les menus de navigation des contrôleurs ou des vues, pour les utiliser comme un <i>map</i> qui liera chaque option à une méthode <code>execute()</code> dans une commande.
         Ceci augmente l'efficacité de l'implémentation car on peut répéter une instance de <code>Menu</code>. 
-        <br>
+        <br><br>
         Tel qu'expliqué plus haut, l'ajout du patron Iterateur, Fabrique et Command simplifie beaucoup les choses dont les contrôleurs et <code>SysModel</code> doivent se soucier. Il suffit d'appeler une méthode
-        de la classe concrète pour faire une action, sans penser au réel fonctionnement de ce dernier. Ceci pourrait simplifier d'éventuelles mises à jour. Le patron de Commande résout notre préoccupation envers le 
-        nombre de responsabilités des contrôleurs et des vues. De plus, le patron Controller élimine la cohésion temporelle qui était un souci dans notre conception du TP2. Il permet également la réutilisation du code entre les
+        de la classe concrète pour faire une action, sans penser au réel fonctionnement de ce dernier. Ceci pourrait simplifier d'éventuelles mises à jour. <br>
+        Le patron de Commande résout notre préoccupation envers le nombre de responsabilités des contrôleurs et des vues. De plus, le patron de Commande élimine la cohésion temporelle qui était un souci dans notre conception du TP2. Il permet également la réutilisation du code entre les
         vues Admin et Client.
         <br>
         Nous avons également amélioré notre diagramme de classes en ajustant les paramètres, les attributs, et les cardinalités, qui étaient redondantes ou absentes. <br>
@@ -314,7 +312,8 @@
 
     <h3>Paquets</h3>
     <p>
-
+       Notre logique dans ce devoir fut de minimiser les <i>imports</i> entre les différentes classes de différents paquets. Nous les avons donc regroupés par fonctionnalité, ainsi que niveaux 
+       d'abstraction. On peut ainsi constater que .....
     </p>
 
     <h3>Critiques</h3>

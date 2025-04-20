@@ -5,16 +5,16 @@ public interface Iterator {
 
 	void add(Entity e);
 
-	void next();
+	Entity next();
 
-	void previous();
+	Entity previous();
 
 	Entity getCurrent();
 
 	void remove(Entity e);
 
-	void first();
+	Entity first();
 
-	void isDone();
+	boolean isDone();
 
 }
