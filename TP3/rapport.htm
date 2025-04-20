@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>IFT3911 DM2</title>
+    <title>IFT3911 TP3</title>
     <style type="text/css">
         table
         {
@@ -33,7 +33,7 @@
         <br />
         <span style="font-weight: bold;">Courriel: </span>amelie.therese.coughlan@umontreal.ca
         <br />
-        <span style="font-weight: bold;">temps mis: </span> 
+        <span style="font-weight: bold;">Temps mis: </span>
     </p>
     <p>
         <span style="font-weight: bold;">Nom: </span>Cassandre Hamel
@@ -42,7 +42,7 @@
         <br />
         <span style="font-weight: bold;">Courriel: </span>cassandre.hamel.1@umontreal.ca
         <br />
-        <span style="font-weight: bold;">temps mis: </span> 
+        <span style="font-weight: bold;">Temps mis: </span>
     </p>
     <p>
         <span style="font-weight: bold;">Nom: </span>Alessandra Mancas
@@ -51,7 +51,7 @@
         <br />
         <span style="font-weight: bold;">Courriel: </span>alessandra.thais.mancas@umontreal.ca
         <br />
-        <span style="font-weight: bold;">temps mis: </span> 
+        <span style="font-weight: bold;">Temps mis: </span>
     </p>
     <h2>
         Distribution des tâches</h2>
@@ -75,15 +75,16 @@
         <tbody>
             <tr>
                 <td>
-                    blablabla
+                    blabla
                 </td>
                 <td>
-                    blablabla
+                    blabla
                 </td>
                 <td>
-                    blablabla
+                    blabla
                 </td>
             </tr>
+
         </tbody>
     </table>
 
@@ -94,11 +95,21 @@
     <h4>Fabrique (variante: fabrique abstraite)</h4>
     <ul>
         <li>Nous avons choisi d'utiliser le patron de fabrique abstraite, car il nous permet d'isoler la création de "familles" d'objets.
-            Ici, les familles sont les 3 types de voyages que l'on peut faire (vol, train, bateau), puis leurs moyens de transport, hubs et companies associés. 
+            Ici, les familles sont les 3 types de voyages que l'on peut faire (vol, train, bateau), puis leurs moyens de transport, hubs et companies associés.
         </li>
         <li>C'est une conception utile dans le cas où on voudrait ajouter un nouveau type d'entité de transport, car il suffirait d'ajouter
             une fabrique concrète.</li>
-        <li>Nous avons gardé l'héritage entre les classes abstaites de chaque entité et la classe Entity, car elle permet de suivre le LSP. </li>
+        <li>Nous avons gardé l'héritage entre les classes abstraites de chaque entité et la classe Entity, car elle permet de suivre le LSP. </li>
+    </ul>
+
+    <h4>Singleton</h4>
+    <ul>
+        <li>Tel que précisé dans l'énoncé, nous avons implémenté ce patron avec les fabriques concrètes, pour s'assurer que 
+            ces dernières ne peuvent qu'être instanciées une seule fois.
+        </li>
+        <li>
+            Elles seront instanciées à l'initialisation du programme et stockées dans <code>SysModel</code>. 
+        </li>
     </ul>
 
     <h4>État</h4>
@@ -109,20 +120,219 @@
     variantes des sièges (ex: logique de réservation). </li>
     </ul>
 
+    <h4>Observateur</h4>
+    <ul>
+        <li>Nous avons choisi d'utiliser le patron de conception Observateur avec notre modele MVC. C'est a dire que nous avons
+            choisi notre sujet (le modèle) et nos observateurs (les vues admin et client) pour que les vues soient
+            notifiées lorsque le modèle change d'état. Ceci nous permet de garder le modèle et les vues
+            decouplés. </li>
+        </li>
+    </ul>
+
+    <h4>Commande</h4>
+    <ul>
+        <li>Nous avons utilisé le patron de conception Commande pour que les vues puissent envoyer des commandes au modèle a travers les contrôleurs.
+            Ceci nous permet de garder le modèle et les vues decouplées et de ne pas avoir de dépendance entre les vues et le modèle mais
+            de garder les vues synchronisées avec ce dernier.</li>
+        <li>Ceci facilitera l'ajout d'éventuelles fonctionnalités de l'interface. Pour ce devoir, nous avons seulement inclus les fonctions 
+            qu'Admin peut faire (pas le Client). 
+        </li>
+        <li>Nous avons inclus un historique dans <code>AdminController</code>, pour permettre à l'utilisateur de <i>undo</i> ses actions et retourner au menu
+        principal.</li>
+    </ul>
+
+    <h4>Visiteur</h4>
+    <ul>
+        <li>
+            Nous avons utilisé le patron de Visiteur pour construire les deux <i>Strings</i> qui représentent un parcours. Puisque l'affichage est différent pour un Client
+            et un Admin, nous avons créé deux classes concrètes qui implémentent l'interface <code>Visitor</code>, qui permettent de construire progressivement ledit <i>String</i>.=
+        </li>
+        <li>Chaque visiteur appelle, une après l'autre, une méthode pour visiter un <code>Hub</code>, <code>ModeTransport</code>, <code>Parcours</code> et <code>Compagnie</code></li>
+        REVOIR FONCTIONNEMENT DE VISITOR ET LES ACCEPT (RECURSIFS?????)
+    </ul>
+
+
 
     <h3>Diagrammes de séquence / collaboration </h3>
+    <h4>Fabrique (& Singleton)</h4>
+    <p>
+        Nous avons choisi d'utiliser le patron de fabrique abstraite, car il nous permet d'isoler la création de "familles" d'entités.
+        C'est une conception utile dans le cas où on voudrait ajouter un nouveau type d'entité de transport, car il suffirait d'ajouter
+        une fabrique concrète. Elle nous évite aussi d'utiliser des types génériques. 
+        Nous avons gardé l'héritage entre les classes abstraites de chaque entité et la classe Entity, car elle permet de suivre le LSP.
+        <br>
+        Les fabriques abstraites peuvent être utilisée dans 2 instances dans SysModel.
+        <ol>
+            <li>La lecture de la base de données et l'instanciation des 4 collections d'entités  (<code>all_parcours, all_modes, all_cies, all_hubs</code>) pour qu'on puisse les utiliser et manipuler plus tard</li>
+            <li>L'ajout manuel d'une entité par l'Admin (qui peut créer, modifier ou supprimer les entités).</li>
+        </ol>
+        Ainsi, nous avons ajouté 4 méthodes, chacune permettant d'ajouter un type à chacune des 4 collections, les permettant d'être appelées ensemble ou séparément. <br>
+        Dans le diagramme de séquence suivant, nous illustrons le premier cas. La lecture du CSV retournera une liste de listes de String, qu'on utilisera pour instancier les entités. 
+        Le premier caractère de chaque ligne indique toujours la famille à laquelle appartient l'entité (n = Naval, a = Aerial, r = Railway). SysModel, dans son constructeur, lira d'abord le contenu et,
+        pour chaque élément, appellera la fonction "createParcours" qui, à partir d'un tableau de String, appellera les autres méthodes de création d'entités, les ajoutera à leurs collections respectives et, finalement instancie
+        le parcours et l'ajouter à la collection.<br>
+        Par souci d'espace, nous avons seulement considéré le cas d'un parcours naval, mais le principe est le même pour les autres familles.
+        <br>
+        Également, nous avons seulement inclus un appel de la méthode add à la ParcoursCollection <code>all_parcours</code>, mais il y a cet appel pour chaque collection (<code>all_modes, all_cies, all_hubs</code>) et chaque
+        entité instanciée avec sa fabrique concrète respective. Ça aurait simplement pris trop de place. 
+        <br>
+        METTRE IMAGE!!!
+
+    </p>
+
+
+    <h4>Etat</h4>
+    <p>
+        TODO!!
+        <br>
+        METTRE IMAGE!!!
+    </p>
+
+    <h4>Observeur (& Commande)</h4>
+    <p>
+        Nous avons choisi d'utiliser le patron de conception Observeur avec notre modele MVC. C'est a dire que nous avons
+        choisi notre sujet (le modèle) et nos observateurs (les vues admin et client) pour que les vues soient
+        notifiées lorsque le modèle change d'état. De plus, dans notre diagramme de séquence, nous avons egalement
+        utilisé le patron de conception Commande pour que les vues puissent envoyer des commandes au modèle a travers les controleurs.
+        Ceci nous permet de garder le modèle et les vues decouplés et de ne pas avoir de dépendance entre les vues et le modèle mais
+        garder les vues synchronisées avec le modèle.
+    </p>
+
+    <h4>Commande</h4>
+    <p>
+        Le patron Commande est utilisé à chaque fois que l'utilisateur (ici, l'Admin) interagit avec la vue. Le cas d'utilisation
+        que nous ilustrons ci-dessous est celui de création d'une entité. L'Admin commence sur le menu principal, choisit
+        l'option pour créer une entité et remplira un "formulaire" où le systeme lui demandera d'entrer l'information désirée. 
+        Chaque fois qu'il entre une information et appuie sur "entrer", une commande <code>EntityField</code> sera déclenchée, ajoutée
+        à la pile de l'historique, puis traitée. Nous illustrons également la fonction <i>undo</i>, où si l'Admin voudrait changer
+        la dernière chose qu'il a entrée, il peut entrer "x". 
+        <br>
+        METTRE IMAGE!!!
+    </p>
+
+    <h4>Visiteur</h4>
+    <p>
+        TODO!!
+    </p>
 
     <h2>Tâche 2 - Patrons de conception de notre choix </h2>
 
+    <h4>MVC</h4>
+    <ul>
+        <li>Dans le TP2, nous avons déjà suivi une conception MVC pour isoler la logique de l'application, ainsi que la section Client et Admin.</li>
+        <li>Dans ce devoir, nous avons gardé cette structure en changeant simplement les <i>controllers</i> pour accomoder le patron de Commande. </li>
+        <li>Ainsi, nous assurons une bonne gestion des responsabilités de chaque classe, puis ça simplifie l'extension éventuelle du système.</li>
+        <br>
+        METTRE IMAGE! 
+    </ul>
+
+    <h4>Itérateur</h4>
+    <ul>
+        <li>Comme le système doit afficher des collections d'entités (<code>all_parcours, all_modes, all_cies, all_hubs</code>), nous avons jugé pertinent
+        de sortir les structures de données physiques de <code>SysModel</code>.</li>
+        <li>Ainsi, <code>SysModel</code> n'a pas besoin de savoir la structure de données de chaque liste (elle pourrait être triée, un map, un ArrayList, etc...). Il 
+        a juste besoin de connaître les méthodes d'ajout, de suppression et de modification. </li>
+        <li>Ceci est également bon pour la longévité du programme, car on pourra modifier les structures de données sans changer de code dans <code>SysModel</code></li>
+        <li>Chaque classe <code>Collection</code> contient le véritable <code>ArrayList</code> des entités, puis nous implémenterons les méthodes
+        de traversée avec celles offertes par Java ; donc on n'augmente pas trop la complexité de l'implémentation. Pour gagner du temps dans le rapport </li>
+        <br>
+        METTRE IMAGE!
+    </ul>
+
+
     <h2>Tâche 3 - Diagramme de paquets</h2>
 
+    <p>
+        TODO EXPLICATION ; METTRE IMAGE DU DIAGRAMME DE PAQUETS
+    </p>
+
     <h2>Tâche 4 - Discussion de la conception</h2>
+
+    TODO EXEMPLES DANS LES ARGUMENTS!!!
+
+    <h3>Changements et améliorations par rapport au TP2</h3>
+    <p>
+        En plus des patrons de conception, nous avons ajouté une classe abstraite <code>View</code>, pour éventuellement permettre plusieurs vues différentes du système. <br>
+        Nous avons également sorti les menus de navigation des contrôleurs ou des vues, pour les utiliser comme un <i>map</i> qui liera chaque option à une méthode <code>execute()</code> dans une commande.
+        Ceci augmente l'efficacité de l'implémentation car on peut répéter une instance de <code>Menu</code>. 
+        <br>
+        Tel qu'expliqué plus haut, l'ajout du patron Iterateur, Fabrique et Command simplifie beaucoup les choses dont les contrôleurs et <code>SysModel</code> doivent se soucier. Il suffit d'appeler une méthode
+        de la classe concrète pour faire une action, sans penser au réel fonctionnement de ce dernier. Ceci pourrait simplifier d'éventuelles mises à jour. Le patron de Commande résout notre préoccupation envers le 
+        nombre de responsabilités des contrôleurs et des vues. De plus, le patron Controller élimine la cohésion temporelle qui était un souci dans notre conception du TP2. Il permet également la réutilisation du code entre les
+        vues Admin et Client.
+        <br>
+        Nous avons également amélioré notre diagramme de classes en ajustant les paramètres, les attributs, et les cardinalités, qui étaient redondantes ou absentes. <br>
+    </p>
+
+    <h3>Principes de conception (SOLID + C, Demeter)</h3>
+    <h4>SRP</h4>
+    <p>
+        Dans le TP2 nous avions conclu que notre diagramme suivait plutôt bien le SRP. Maintentant, trouve que la plupart des classes desservent un seul but, puis qu'on a bien séparé celles qui font plus de choses. Par exemple, 
+        les contrôleurs ne font désormais que traiter le <i>input</i> de l'utilisateur et lier à la bonne commande, alors que dans le TP2, les contrôleurs
+        contenaient les fonctions des menus. <br>
+        La seule classe qui brise ce principe est aussi la plus couplée -- <code>SysModel</code>. En effet, elle est responsable de la lecture des fichiers CSV, de l'instanciation des entités et de la gestion de notre "base de données", 
+        ainsi que de la recherche d'entités dans leurs collections. Cependant, nous jugeons que c'est un compromis acceptable, car elle nous permet de centraliser ces informations et éviter aux autres classes de devoir
+        s'en soucier. De plus, avec l'Iterateur, nous réduisons également ce dont <code>SysModel</code> doit se soucier, car il n'a plus à savoir comment sont implémentées les collections. <br>
+    </p>
+
+    <h4>OCP</h4>
+    <p>
+        Le patron de Commande nous permet de libérer les contrôleurs; il est beaucoup plus simple d'ajouter de nouvelles fonctionnalités de l'interface.  <br>
+        Les factories facilitent davantage l'ajout d'une famille d'entités (par exemple, un bus) sans avoir à changer le code de <code>SysModel</code>. Il suffira d'ajouter une nouvelle fabrique concrète et de compter son cas dans <code>SysModel</code> (voir Critique).
+        Le patron d'État nous permettra également d'étendre le comportement de la classe Place sans avoir à changer le code de cette dernière (en ajoutant, par exemple un état "mis de côté" pour un siège qui est réservé mais pas payé.<br>
+    </p>
+
+    <h4>LSP</h4>
+    <p>
+        Comme pour le TP2, nous continuons de passer des classes abstraites en argument pour assurer la flexibilité du comportement d'une classe. De plus, toutes les classes
+        abstraites qu'on a ajouté (<code>View</code>, <code>Entity</code>) et les interfaces font toujours <i>moins</i> que leurs enfants. Assurant ainsi qu'on peut passer les
+        parents en argument sans briser le LSP. <br>
+        Nous avons minimisé le plus possible l'usage de conditions basées sur le type. Elles ne sont que présentes dans <code>SysModel</code>, qui doit savoir quelle fabrique
+        concrète appeler. 
+    </p>
+
+    <h4>ISP</h4>
+    <p>
+        Les contrôleurs séparent les différentes fonctionnalités de l'interface entre Admin et Client. Le patron de Commande permet également d'éviter de devoir implémenter du code inutile tout en favorisant la réutilisation, 
+        car la méthode execute fait partie de la commande et non du contrôleur. 
+    </p>
+
+    <h4>DIP</h4>
+    <p>
+        Les classes ne dépendent jamais d'une classe concrète, elles passent toujours par une interface ou une classe abstraite. Nous avons également appliqué cette règle pour <i><code>View</code></i> et <code>SysModel</code>, qui n'est plus connectée aux >
+    </p>
+
+    <h4>Loi de Demeter</h4>
+    <p>
+        TODO ONCE CODE IS DONE
+    </p>
+
+
+    <h3>Paquets</h3>
+    <p>
+
+    </p>
+
+    <h3>Critiques</h3>
+    <p>
+        Nous avons fait de notre mieux pour éviter des <i>switch case</i> basées sur le type, mais elles s'avèrent inévitables dans <code>SysModel</code>, qui doit
+        connaître statiquement les types de famille. Ainsi, si on voulait ajouter une nouvelle famille d'entités, il faudrait non seulement créer de nouvelles classes et les lier
+        entre elles, ainsi qu'une fabrique concrète, mais aussi ajouter le cas de cette nouvelle famille dans <code>SysModel</code>. On pense, cependant, que ce changement n'est pas 
+        trop lourd, car le <i>switch case</i> ne touche pas à la logique d'affaires de notre application, qui repose plutôt sur des classes abstraites. <br>
+        On trouve également que les patrons de conception ont beaucoup augmenté le nombre de classes de notre programme, ce qui pourrait augmenter la complexité et le couplage du système.
+        <br>
+        Nous avons également constaté, en générant le code, que le diagramme du TP2 était, en fait, pas implémentable en Java, même s'il était correct. En effet, nous avions omis 
+        quelques détails et mal compris comment annoter une association (on ajoutait un rôle au lieu d'une multiplicité) ou des espaces (invisibles) après le nom d'une classe, ce qui a 
+        rendu la génération de code plus difficile. (REVOIR?)
+    </p>
+
+
 
     <h2>Tâche 5 - Implémentation en Java</h2>
 
 
 
-    
+
 <br>
 <br>
 Merci!
