@@ -1,4 +1,5 @@
 package SystemCore;
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -42,4 +43,23 @@ public class Reservation {
 		return reservationNo;
 	}
 
+	public String getTotal() {
+		return String.valueOf(total);
+	}
+
+	public Date getDate() {
+		return Date.valueOf(date.toLocalDate());
+	}
+
+	public String getParcoursId() {
+		return parcoursId;
+	}
+
+	public Section getSection() {
+		return section;
+	}
+
+	public Place getPlace() {
+		return place;
+	}
 }

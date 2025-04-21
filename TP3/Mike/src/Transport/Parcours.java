@@ -27,13 +27,20 @@ public abstract class Parcours extends Entity {
 
 	private LocalDateTime createDate(String str)
 	{
-		String[] dateStr = str.split("[.]");
-		int[] date = new int[dateStr.length];
-		for (int i = 0; i < date.length; i++)
-		{
-			date[i] = Integer.parseInt(dateStr[i]);
+		String[] parts = str.split("[-\\.:]");
+		if (parts.length != 5) {
+			throw new IllegalArgumentException(
+					"Bad date‑time format, expected 5 fields but got "
+							+ parts.length + " from \"" + str + "\""
+			);
 		}
-		return LocalDateTime.of(date[0], date[1], date[2], date[3], date[4]);
+		int year   = Integer.parseInt(parts[0]);
+		int month  = Integer.parseInt(parts[1]);
+		int day    = Integer.parseInt(parts[2]);
+		int hour   = Integer.parseInt(parts[3]);
+		int minute = Integer.parseInt(parts[4]);
+
+		return LocalDateTime.of(year, month, day, hour, minute);
 	}
 
 	@Override

@@ -1,20 +1,20 @@
-package Application;
+	package Application;
 
-// iterator interface
-public interface Iterator {
+	// iterator interface
+	public interface Iterator {
 
-	void add(Entity e);
+		void add(Entity e);
 
-	Entity next();
+		Entity next();
 
-	Entity previous();
+		Entity previous();
 
-	Entity getCurrent();
+		Entity getCurrent();
 
-	void remove(Entity e);
+		void remove(Entity e);
 
-	Entity first();
+		Entity first();
 
-	boolean isDone();
+		boolean isDone();
 
-}
+	}
