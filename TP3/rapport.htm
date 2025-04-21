@@ -75,22 +75,32 @@
         <tbody>
             <tr>
                 <td>
-                    blabla
+                    Code Java et création du projet, diagramme de classes, diagramme de paquets (~20h)
                 </td>
                 <td>
-                    blabla
+                    Code Java, diagramme de paquets, diagramme de classes, séquence état et observateur (~20h)
                 </td>
                 <td>
-                    blabla
+                    Code Java, diagramme de classes, séquence visiteur, fabrique, commande (~20h)
                 </td>
             </tr>
 
         </tbody>
     </table>
 
+    <p>
+        SVP pour les fichiers <code>vpp</code> corrects, allez dans le dossier nommé <code>vpp_ame_final</code> ainsi que <code>diagrammes</code> (on avait du mal à
+        joindre les projets Visual Paradigm, donc c'est dans des lieux séparés)
+    </p>
+
     <h2>Tâche 1 - Patrons de conception mentionnés </h2>
 
     <h3>Diagramme de classe</h3>
+
+    <p>/diagrammes/class_diag.png</p>
+        <p>
+            <img src="diagrammes/class_diag.png" alt="Diagramme de séquence Factory" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
 
     <h4>Fabrique (variante: fabrique abstraite)</h4>
     <ul>
@@ -180,26 +190,39 @@
         Également, nous avons seulement inclus un appel de la méthode add à la ParcoursCollection <code>all_parcours</code>, mais il y a cet appel pour chaque collection (<code>all_modes, all_cies, all_hubs</code>) et chaque
         entité instanciée avec sa fabrique concrète respective. Ça aurait simplement pris trop de place. 
         <br>
-        METTRE IMAGE!!!
+        <br>
+        <p>/diagrammes/factory_sequence.png</p>
+        <p>
+            <img src="diagrammes/factory_sequence.png" alt="Diagramme de séquence Factory" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+    
 
     </p>
 
 
     <h4>Etat</h4>
     <p>
-        TODO EXPLICATION!!!!
+        Ici nous illustrons le cas où un client voudrait réserver un siège, puis le statut de ce dernier change selon l'état dans lequel il est au début. 
         <br>
-        METTRE IMAGE!!!
+        <p>/diagrammes/state_sequence.png</p>
+        <p>
+            <img src="diagrammes/state_sequence.png" alt="Diagramme de séquence Factory" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
     </p>
 
-    <h4>Observeur (& Commande)</h4>
+    <h4>Observateur (& Commande)</h4>
     <p>
-        Nous avons choisi d'utiliser le patron de conception Observeur avec notre modele MVC. C'est a dire que nous avons
+        Nous avons choisi d'utiliser le patron de conception Observateur avec notre modele MVC. C'est a dire que nous avons
         choisi notre sujet (le modèle) et nos observateurs (les vues admin et client) pour que les vues soient
         notifiées lorsque le modèle change d'état. De plus, dans notre diagramme de séquence, nous avons egalement
         utilisé le patron de conception Commande pour que les vues puissent envoyer des commandes au modèle a travers les controleurs.
         Ceci nous permet de garder le modèle et les vues decouplés et de ne pas avoir de dépendance entre les vues et le modèle mais
         garder les vues synchronisées avec le modèle.
+        <br><br>
+        <p>/diagrammes/observateur_sequence.png</p>
+        <p>
+            <img src="diagrammes/observateur_sequence.png" alt="Diagramme de séquence Factory" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
     </p>
 
     <h4>Commande</h4>
@@ -211,7 +234,13 @@
         à la pile de l'historique, puis traitée. Nous illustrons également la fonction <i>undo</i>, où si l'Admin voudrait changer
         la dernière chose qu'il a entrée, il peut entrer "x". 
         <br>
-        METTRE IMAGE!!!
+        <br>
+        <p>/diagrammes/command_sequence.png</p>
+        <p>
+            <img src="diagrammes/command_sequence.png" alt="Diagramme de séquence Factory" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+    
+
     </p>
 
     <h4>Visiteur</h4>
@@ -220,8 +249,12 @@
         de chaque résultat de recherche. <br>
         Le système instanciera d'abord un <code>ConcreteAdminVisitor</code>, puis dans la méthode <code>visit(Parcours)</code>, il appelle les méthodes permettant 
         également de visiter les composantes d'un <code>Parcours</code>. 
-
-        METTRE IMAGE!!!
+        <br><br>
+        <p>/diagrammes/visitor_sequence.png</p>
+        <p>
+            <img src="diagrammes/visitor_sequence.png" alt="Diagramme de séquence Factory" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
+        </p>
+        
     </p>
 
     <h2>Tâche 2 - Patrons de conception de notre choix </h2>
@@ -232,7 +265,7 @@
         <li>Dans ce devoir, nous avons gardé cette structure en changeant simplement les <i>controllers</i> pour accomoder le patron de Commande. </li>
         <li>Ainsi, nous assurons une bonne gestion des responsabilités de chaque classe, puis ça simplifie l'extension éventuelle du système.</li>
         <br>
-        METTRE IMAGE! 
+        
     </ul>
 
     <h4>Itérateur</h4>
@@ -245,15 +278,20 @@
         <li>Chaque classe <code>Collection</code> contient le véritable <code>ArrayList</code> des entités, puis nous implémenterons les méthodes
         de traversée avec celles offertes par Java ; donc on n'augmente pas trop la complexité de l'implémentation. Pour gagner du temps dans le rapport </li>
         <br>
-        METTRE IMAGE!
+
     </ul>
 
 
     <h2>Tâche 3 - Diagramme de paquets</h2>
 
+    <p>Tel que ça sera expliqué dans notre évaluation du design, nous avons voulu séparer les sections de la logique de l'application, de sorte à minimiser les <i>imports</i>
+    dans le code plus tard. Nous avons donc séparé autant par les domaines d'implémentation (comme le paquet <code>Application</code>), mais aussi par fonctionnalité (comme <code>Core</code> et <code>Transport</code>)</p>
+
+    <p>/diagrammes/paquets.png</p>
     <p>
-        TODO EXPLICATION ; METTRE IMAGE DU DIAGRAMME DE PAQUETS
+        <img src="diagrammes/paquets.png" alt="Diagramme de paquets" style="max-width: 100%; height: auto; display: block; margin-top: 10px;">
     </p>
+
 
     <h2>Tâche 4 - Discussion de la conception</h2>
 
@@ -312,8 +350,8 @@
 
     <h3>Paquets</h3>
     <p>
-       Notre logique dans ce devoir fut de minimiser les <i>imports</i> entre les différentes classes de différents paquets. Nous les avons donc regroupés par fonctionnalité, ainsi que niveaux 
-       d'abstraction. On peut ainsi constater que .....
+       Notre logique dans ce devoir fut de minimiser les <i>imports</i> entre les différentes classes de différents paquets. Nous les avons donc regroupés par fonctionnalité, ainsi que par niveaux 
+       d'abstraction. Ainsi, nous augmentons la cohésion pour des paquets de domaine plus spécifique (comme Transport), car les classes seront particulières à notre implémentation. 
     </p>
 
     <h3>Critiques</h3>
@@ -334,16 +372,21 @@
     <h2>Tâche 5 - Implémentation en Java</h2>
 
     <p>
-        LINK TO README!!!!
+        Nous avons eu un peu de difficulté à implémenter le projet en Java, simplement dû à des soucis temporels. Veuillez SVP suivre les instructions du 
+        <code>readme</code> et, pour voir les implémentations des patrons de conception, suivre les diagrammes de séquence pour voir l'ordre des appels et le code qui leur correspond. <span style="color: lightgray"> On apprécierait bien des points partiels :')</span>
     </p>
 
-    <img src="TP3/download.jpeg" alt="nous" style="width: 70%; height: auto;">
+    <p>Le code et l'exécutable se trouvent dans le répertoire nommé <code>Mike</code></p>
+    
+    <p> Lien au readme: <a src="Mike/src/readme.md">ici!! (Mike/src/readme.md)</a></p>
+
+    <img src="download.png" alt="nous?" style="width: 70%; height: auto;">
 
 
 
 <br>
 <br>
-Merci!
+Merci!!
 <br>
 <br>
 </body>
