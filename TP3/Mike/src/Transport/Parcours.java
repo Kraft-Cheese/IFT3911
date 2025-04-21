@@ -11,9 +11,9 @@ public abstract class Parcours extends Entity {
 	protected LocalDateTime date_depart;
 	protected LocalDateTime date_arrivee;
 	protected float duree;
-	private Cie compagnie;
-	private ArrayList<Hub> hubs;
-	private ModeTransport mode;
+	protected Cie compagnie;
+	protected ArrayList<Hub> hubs;
+	protected ModeTransport mode;
 
 	public Parcours(ArrayList<Hub> hubs, ModeTransport mode, Cie cie, String id, String date_d, String date_a)
 	{
