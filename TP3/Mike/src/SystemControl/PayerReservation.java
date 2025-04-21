@@ -14,7 +14,7 @@ public class PayerReservation implements ICommand {
     @Override
     public void execute() {
         // Simulate payment processing
-//        paymentSuccess = model.processPayment(reservationId);
+        paymentSuccess = true;
         if (paymentSuccess) {
             System.out.println("Payment successful for " + reservationId);
         } else {
@@ -25,7 +25,7 @@ public class PayerReservation implements ICommand {
     @Override
     public void undo() {
        if (paymentSuccess) {
-//           model.refundPayment(reservationId);
+           System.out.println("Refunding payment for " + reservationId);
        }
     }
 }

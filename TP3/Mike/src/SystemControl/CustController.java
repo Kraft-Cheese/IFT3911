@@ -1,6 +1,7 @@
 package SystemControl;
 
 import SystemCore.SysModel;
+import SystemView.CustView;
 import Transport.Parcours;
 import Transport.Section;
 import Transport.Place;
@@ -38,15 +39,6 @@ public class CustController {
 		commandManager.executeCommand(cmd);
 	}
 
-//	public void demanderInfoPaiement() {
-//		ICommand cmd = new DemanderInfoPaiement(model);
-//		commandManager.executeCommand(cmd);
-//	}
-//
-//	public void demanderInfoClient() {
-//		ICommand cmd = new RequestClient(model);
-//		commandManager.executeCommand(cmd);
-//	}
 
 	public void payerReservation(String reservationId) {
 		ICommand cmd = new PayerReservation(model, reservationId);
@@ -55,5 +47,9 @@ public class CustController {
 
 	public void undo() {
 		commandManager.undoLast();
+	}
+
+	public void viewReservation(SysModel model, CustView view, String id) {
+
 	}
 }

@@ -1,7 +1,9 @@
 package SystemControl;
 import Application.Entity;
 import SystemCore.SysModel;
-import Transport.*;
+import SystemView.AdminView;
+
+import java.util.Collections;
 
 
 public class AdminController {
@@ -35,9 +37,9 @@ public class AdminController {
 //		commandManager.executeCommand(cmd);
 	}
 
-	public void createEntity(String name, String description) {
-//		ICommand cmd = new MakeNewEntity(model, name, description);
-//		commandManager.executeCommand(cmd);
+	public void createEntity(String entityType, String description) {
+		ICommand cmd = new MakeNewEntity(model, entityType, Collections.singletonList(description));
+		commandManager.executeCommand(cmd);
 	}
 
 	public void modifyEntity(String id, String name, String description) {
@@ -52,5 +54,9 @@ public class AdminController {
 
 	public void undo() {
 		commandManager.undoLast();
+	}
+
+	public void requestEntities(AdminView view) {
+		commandManager.executeCommand(new RequestEntities(model));
 	}
 }
