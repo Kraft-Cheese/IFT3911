@@ -132,7 +132,7 @@ public class CustView extends View {
 		}
 		controller.faireReservation(sec, place, String.valueOf(UUID.randomUUID()), LocalDateTime.now(), sec.getPrix());
 		List<Reservation> resList = model.getReservations();
-		Reservation r = resList.getFirst();
+		Reservation r = resList.get(resList.size() - 1);
 		if(r == null) {
 			System.out.println("Reservation failed.");
 			return;

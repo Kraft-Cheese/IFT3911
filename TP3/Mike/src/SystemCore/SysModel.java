@@ -234,8 +234,8 @@ public class SysModel {
 				modes.add((ModeTransport) e);
 				e = it.next();
 			}
-		} catch (IndexOutOfBoundsException | ClassCastException ex) {
-			// iterator exhausted (or bad cast) → stop
+		} catch (IndexOutOfBoundsException | ClassCastException e) {
+			System.out.println("Iterator exhausted or bad cast: " + e.getMessage());
 		}
 
 		if (modes.isEmpty()) {
@@ -254,7 +254,8 @@ public class SysModel {
 				parcoursList.add((Parcours) e);
 				e = it.next();
 			}
-		} catch (IndexOutOfBoundsException | ClassCastException _) {
+		} catch (IndexOutOfBoundsException | ClassCastException e) {
+			// iterator exhausted (or bad cast) → stop
 		}
 		if (parcoursList.isEmpty()) {
 			System.err.println("No trips found in the collection.");
@@ -272,7 +273,8 @@ public class SysModel {
 				cies.add((Cie) e);
 				e = it.next();
 			}
-		} catch (IndexOutOfBoundsException | ClassCastException _) {
+		} catch (IndexOutOfBoundsException | ClassCastException e) {
+			System.out.println("Iterator exhausted or bad cast: " + e.getMessage());
 		}
 		if (cies.isEmpty()) {
 			System.err.println("No companies found in the collection.");
@@ -290,7 +292,8 @@ public class SysModel {
 				hubs.add((Hub) e);
 				e = it.next();
 			}
-		} catch (IndexOutOfBoundsException | ClassCastException _) {
+		} catch (IndexOutOfBoundsException | ClassCastException e) {
+			System.out.println("Iterator exhausted or bad cast: " + e.getMessage());
 		}
 		if (hubs.isEmpty()) {
 			System.err.println("No hubs found in the collection.");
