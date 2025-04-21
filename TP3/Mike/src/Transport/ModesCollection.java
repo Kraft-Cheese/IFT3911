@@ -14,4 +14,13 @@ public class ModesCollection implements IterableCollection {
 	public CollectionIterator createIterator() {
 		return new CollectionIterator(modesList);
 	}
+
+	public ModeTransport getMode(String code) {
+		for (ModeTransport mode : modesList) {
+			if (mode.getID().equals(code)) {
+				return mode;
+			}
+		}
+		return null;
+	}
 }

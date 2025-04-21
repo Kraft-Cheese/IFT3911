@@ -6,6 +6,8 @@ public abstract class Menu {
 
 	public void display() {
 		// TODO - implement SystemView.Menu.display
+		// This is the method that is called to display the current menu
+		//Of the specified user
 		throw new UnsupportedOperationException();
 	}
 
